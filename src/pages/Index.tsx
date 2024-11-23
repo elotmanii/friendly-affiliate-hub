@@ -4,6 +4,7 @@ import { Search, ChevronRight, Star, ShoppingCart } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Newsletter from '../components/Newsletter';
 import { Button } from '../components/ui/button';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,6 +33,22 @@ const Index = () => {
       rating: 4.5,
       image: "https://images.unsplash.com/photo-1609592807597-7e1d57a9c2bf?w=800&q=80",
       category: "Accessories"
+    },
+    {
+      id: 4,
+      title: "Apple AirPods Pro",
+      price: 249.99,
+      rating: 4.9,
+      image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&q=80",
+      category: "Electronics"
+    },
+    {
+      id: 5,
+      title: "Samsung Galaxy Watch 4",
+      price: 279.99,
+      rating: 4.7,
+      image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80",
+      category: "Wearables"
     }
   ];
 
@@ -44,7 +61,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl mx-auto text-center sm:text-left"
+            className="max-w-2xl mx-auto text-center"
           >
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-4 text-white">
               Discover Amazing Products at Great Prices
@@ -52,7 +69,7 @@ const Index = () => {
             <p className="text-lg sm:text-xl text-gray-300 mb-8">
               Handpicked selection of the best products from Amazon, curated just for you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-amazon-yellow text-black hover:bg-amazon-orange">
                 Shop Now
                 <ShoppingCart className="ml-2 h-4 w-4" />
@@ -81,15 +98,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* Featured Products Slider */}
       <section className="py-16 bg-white">
         <div className="container-padding">
           <h2 className="section-title text-center mb-12">Featured Products</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <Carousel className="w-full max-w-5xl mx-auto">
+            <CarouselContent>
+              {featuredProducts.map((product) => (
+                <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3">
+                  <ProductCard product={product} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex -left-4" />
+            <CarouselNext className="hidden sm:flex -right-4" />
+          </Carousel>
         </div>
       </section>
 

@@ -17,19 +17,11 @@
 
 @layer components {
   .product-card {
-    @apply relative bg-white rounded-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-amazon-orange;
-  }
-
-  .product-image {
-    @apply aspect-[4/3] sm:aspect-square object-cover w-full transition-transform duration-300;
-  }
-
-  .product-card:hover .product-image {
-    @apply scale-105;
+    @apply relative bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-amazon-orange;
   }
 
   .section-title {
-    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-amazon-dark;
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-amazon-dark relative pb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-24 after:h-1 after:bg-amazon-orange;
   }
 
   .container-padding {
