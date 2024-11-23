@@ -1,17 +1,17 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { CarouselContext, type CarouselApi, type CarouselContextProps } from "./carousel/carousel-context"
+import useEmblaCarousel from "embla-carousel-react"
+import { CarouselContext } from "./carousel/carousel-context"
 import { CarouselContent, CarouselItem } from "./carousel/carousel-items"
 import { CarouselPrevious, CarouselNext } from "./carousel/carousel-controls"
-import useEmblaCarousel from "embla-carousel-react"
 
 const Carousel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
-    opts?: CarouselContextProps["opts"]
-    plugins?: CarouselContextProps["plugins"]
-    orientation?: CarouselContextProps["orientation"]
-    setApi?: (api: CarouselApi) => void
+    opts?: any
+    plugins?: any
+    orientation?: "horizontal" | "vertical"
+    setApi?: (api: any) => void
   }
 >(
   (
@@ -36,7 +36,7 @@ const Carousel = React.forwardRef<
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
 
-    const onSelect = React.useCallback((api: CarouselApi) => {
+    const onSelect = React.useCallback((api: any) => {
       if (!api) return
 
       setCanScrollPrev(api.canScrollPrev())
@@ -96,11 +96,4 @@ const Carousel = React.forwardRef<
 )
 Carousel.displayName = "Carousel"
 
-export {
-  type CarouselApi,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-}
+export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext }
