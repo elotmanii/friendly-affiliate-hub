@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, ChevronRight } from 'lucide-react';
+import { Search, ChevronRight, Star, ShoppingCart } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import Newsletter from '../components/Newsletter';
 import { Button } from '../components/ui/button';
@@ -11,7 +11,7 @@ const Index = () => {
   const featuredProducts = [
     {
       id: 1,
-      title: "Premium Wireless Headphones",
+      title: "Sony WH-1000XM4 Wireless Headphones",
       price: 299.99,
       rating: 4.8,
       image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
@@ -19,7 +19,7 @@ const Index = () => {
     },
     {
       id: 2,
-      title: "Smart Fitness Watch",
+      title: "Fitbit Versa 3 Smart Watch",
       price: 199.99,
       rating: 4.6,
       image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
@@ -27,7 +27,7 @@ const Index = () => {
     },
     {
       id: 3,
-      title: "Portable Power Bank",
+      title: "Anker PowerCore 26800mAh",
       price: 49.99,
       rating: 4.5,
       image: "https://images.unsplash.com/photo-1609592807597-7e1d57a9c2bf?w=800&q=80",
@@ -36,28 +36,28 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-[80vh] bg-muted flex items-center">
-        <div className="container-padding max-w-7xl mx-auto">
+      <section className="relative bg-gradient-to-r from-amazon-dark to-amazon-light py-16 sm:py-24">
+        <div className="container-padding">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl"
+            className="max-w-2xl mx-auto text-center sm:text-left"
           >
-            <h1 className="text-6xl font-bold leading-tight mb-6">
-              Discover Premium Products for Your Lifestyle
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-4 text-white">
+              Discover Amazing Products at Great Prices
             </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              Curated selection of high-quality products, handpicked for you.
+            <p className="text-lg sm:text-xl text-gray-300 mb-8">
+              Handpicked selection of the best products from Amazon, curated just for you.
             </p>
-            <div className="flex gap-4">
-              <Button size="lg">
-                Browse Products
-                <ChevronRight className="ml-2 h-4 w-4" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+              <Button size="lg" className="bg-amazon-yellow text-black hover:bg-amazon-orange">
+                Shop Now
+                <ShoppingCart className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button variant="outline" size="lg" className="text-white border-white hover:bg-white/10">
                 Learn More
               </Button>
             </div>
@@ -66,16 +66,16 @@ const Index = () => {
       </section>
 
       {/* Search Section */}
-      <section className="py-12 bg-white">
-        <div className="container-padding max-w-7xl mx-auto">
-          <div className="relative max-w-xl mx-auto">
+      <section className="py-8 bg-white shadow-sm sticky top-0 z-10">
+        <div className="container-padding">
+          <div className="relative max-w-2xl mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
               type="text"
               placeholder="Search for products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+              className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-transparent"
             />
           </div>
         </div>
@@ -83,9 +83,9 @@ const Index = () => {
 
       {/* Featured Products */}
       <section className="py-16 bg-white">
-        <div className="container-padding max-w-7xl mx-auto">
+        <div className="container-padding">
           <h2 className="section-title text-center mb-12">Featured Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -94,22 +94,22 @@ const Index = () => {
       </section>
 
       {/* Trust Section */}
-      <section className="py-16 bg-muted">
-        <div className="container-padding max-w-7xl mx-auto text-center">
-          <h2 className="section-title mb-12">Why Choose Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-16 bg-background">
+        <div className="container-padding">
+          <h2 className="section-title text-center mb-12">Why Shop With Us</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
-                title: "Curated Selection",
-                description: "Hand-picked premium products that meet our quality standards"
+                title: "Verified Products",
+                description: "All products are carefully selected from Amazon"
+              },
+              {
+                title: "Best Prices",
+                description: "We find the best deals and discounts for you"
               },
               {
                 title: "Secure Shopping",
-                description: "Safe and secure shopping experience with trusted partners"
-              },
-              {
-                title: "Expert Reviews",
-                description: "Detailed product reviews and recommendations from experts"
+                description: "Shop with confidence through Amazon's secure platform"
               }
             ].map((item, index) => (
               <motion.div
@@ -117,9 +117,9 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 bg-white rounded-xl"
+                className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
               >
-                <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
+                <h3 className="text-xl font-semibold mb-4 text-amazon-dark">{item.title}</h3>
                 <p className="text-gray-600">{item.description}</p>
               </motion.div>
             ))}

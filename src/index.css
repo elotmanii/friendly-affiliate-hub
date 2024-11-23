@@ -17,11 +17,11 @@
 
 @layer components {
   .product-card {
-    @apply relative bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg;
+    @apply relative bg-white rounded-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-amazon-orange;
   }
 
   .product-image {
-    @apply aspect-square object-cover w-full transition-transform duration-300;
+    @apply aspect-[4/3] sm:aspect-square object-cover w-full transition-transform duration-300;
   }
 
   .product-card:hover .product-image {
@@ -29,10 +29,10 @@
   }
 
   .section-title {
-    @apply text-4xl font-semibold tracking-tight;
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-amazon-dark;
   }
 
   .container-padding {
-    @apply px-4 sm:px-6 lg:px-8;
+    @apply px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
   }
 }

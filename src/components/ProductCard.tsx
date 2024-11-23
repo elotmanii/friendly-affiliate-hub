@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Star, ShoppingCart } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface ProductCardProps {
   product: {
@@ -18,7 +19,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="product-card group"
+      className="product-card"
     >
       <div className="relative overflow-hidden">
         <img
@@ -28,9 +29,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         />
         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300" />
       </div>
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         <div className="text-sm text-gray-500 mb-2">{product.category}</div>
-        <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
+        <h3 className="text-base sm:text-lg font-semibold mb-2 line-clamp-2">{product.title}</h3>
         <div className="flex items-center gap-2 mb-4">
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
@@ -38,7 +39,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 key={i}
                 className={`h-4 w-4 ${
                   i < Math.floor(product.rating)
-                    ? 'text-yellow-400 fill-current'
+                    ? 'text-amazon-yellow fill-current'
                     : 'text-gray-300'
                 }`}
               />
@@ -47,8 +48,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <span className="text-sm text-gray-600">{product.rating}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xl font-semibold">${product.price}</span>
-          <button className="text-accent hover:underline">View Details</button>
+          <span className="text-lg sm:text-xl font-bold text-amazon-dark">${product.price}</span>
+          <Button size="sm" className="bg-amazon-yellow hover:bg-amazon-orange text-black">
+            <ShoppingCart className="h-4 w-4 mr-2" />
+            View on Amazon
+          </Button>
         </div>
       </div>
     </motion.div>
