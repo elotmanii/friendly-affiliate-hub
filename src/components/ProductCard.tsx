@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Star, ShoppingCart } from 'lucide-react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: {
@@ -22,7 +23,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       className="group h-full"
     >
       <div className="product-card h-full flex flex-col">
-        <div className="relative overflow-hidden aspect-[4/3]">
+        <Link to={`/product/${product.id}`} className="relative overflow-hidden aspect-[4/3]">
           <img
             src={product.image}
             alt={product.title}
@@ -35,10 +36,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
               View on Amazon
             </Button>
           </div>
-        </div>
+        </Link>
         <div className="p-4 flex-grow flex flex-col">
           <div className="text-sm text-amazon-blue font-medium mb-2">{product.category}</div>
-          <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-grow">{product.title}</h3>
+          <Link to={`/product/${product.id}`}>
+            <h3 className="text-lg font-semibold mb-2 line-clamp-2 flex-grow hover:text-amazon-orange transition-colors">
+              {product.title}
+            </h3>
+          </Link>
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <div className="flex items-center">

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, ShoppingCart, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '../components/ui/button';
 import ProductCard from '../components/ProductCard';
 import Newsletter from '../components/Newsletter';
-import { Button } from '../components/ui/button';
+import SearchProducts from '../components/SearchProducts';
+import { filterProducts } from '../utils/search';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const Index = () => {
@@ -58,11 +60,12 @@ const Index = () => {
     { title: "Trusted Reviews", description: "Real customer feedback" }
   ];
 
+  const filteredProducts = filterProducts(featuredProducts, searchQuery);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center">
-        {/* Background with gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-amazon-dark via-amazon-light to-amazon-orange/20 overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070')] bg-cover bg-center opacity-10" />
         </div>
@@ -123,18 +126,9 @@ const Index = () => {
               <div className="relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amazon-orange to-amazon-yellow rounded-lg blur opacity-30"></div>
                 <div className="relative bg-amazon-dark/40 backdrop-blur-sm border border-white/10 p-8 rounded-lg">
-                  <div className="relative max-w-2xl mx-auto">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
-                    <input
-                      type="text"
-                      placeholder="Search for products..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-12 pr-4 py-3 rounded-full border border-white/10 bg-white/5 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-transparent backdrop-blur-sm"
-                    />
-                  </div>
+                  <SearchProducts searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                   <div className="mt-8 grid grid-cols-2 gap-4">
-                    {featuredProducts.slice(0, 2).map((product) => (
+                    {filteredProducts.slice(0, 2).map((product) => (
                       <motion.div
                         key={product.id}
                         whileHover={{ scale: 1.02 }}
@@ -153,19 +147,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Rest of the sections */}
+      {/* Search Section */}
       <section className="py-8 bg-white shadow-sm sticky top-0 z-10">
         <div className="container-padding">
-          <div className="relative max-w-2xl mx-auto">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <input
-              type="text"
-              placeholder="Search for products..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-amazon-orange focus:border-transparent"
-            />
-          </div>
+          <SearchProducts searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         </div>
       </section>
 
@@ -174,15 +159,9 @@ const Index = () => {
         <div className="container-padding">
           <h2 className="section-title text-center mb-12">Featured Products</h2>
           <div className="max-w-5xl mx-auto">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true
-              }}
-              className="w-full"
-            >
+            <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent>
-                {featuredProducts.map((product) => (
+                {filteredProducts.map((product) => (
                   <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
                     <ProductCard product={product} />
                   </CarouselItem>
