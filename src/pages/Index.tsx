@@ -1,17 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import ProductCard from '../components/ProductCard';
 import Newsletter from '../components/Newsletter';
 import SearchProducts from '../components/SearchProducts';
+import HeroFeatures from '../components/HeroFeatures';
+import HeroPreviewCards from '../components/HeroPreviewCards';
 import { filterProducts } from '../utils/search';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import { Product } from '../types/product';
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const productsRef = useRef<HTMLElement>(null);
 
-  const featuredProducts = [
+  const featuredProducts: Product[] = [
     {
       id: 1,
       title: "Sony WH-1000XM4 Wireless Headphones",
@@ -62,6 +66,10 @@ const Index = () => {
 
   const filteredProducts = filterProducts(featuredProducts, searchQuery);
 
+  const scrollToProducts = () => {
+    productsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -92,7 +100,11 @@ const Index = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button size="lg" className="bg-amazon-yellow text-black hover:bg-amazon-orange group">
+                <Button 
+                  size="lg" 
+                  className="bg-amazon-yellow text-black hover:bg-amazon-orange group"
+                  onClick={scrollToProducts}
+                >
                   Start Shopping
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -101,20 +113,7 @@ const Index = () => {
                 </Button>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                {heroFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="text-center"
-                  >
-                    <h3 className="text-lg font-semibold text-amazon-orange mb-1">{feature.title}</h3>
-                    <p className="text-sm text-gray-300">{feature.description}</p>
-                  </motion.div>
-                ))}
-              </div>
+              <HeroFeatures features={heroFeatures} />
             </motion.div>
 
             <motion.div
@@ -127,19 +126,7 @@ const Index = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-amazon-orange to-amazon-yellow rounded-lg blur opacity-30"></div>
                 <div className="relative bg-amazon-dark/40 backdrop-blur-sm border border-white/10 p-8 rounded-lg">
                   <SearchProducts searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-                  <div className="mt-8 grid grid-cols-2 gap-4">
-                    {filteredProducts.slice(0, 2).map((product) => (
-                      <motion.div
-                        key={product.id}
-                        whileHover={{ scale: 1.02 }}
-                        className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10"
-                      >
-                        <img src={product.image} alt={product.title} className="w-full h-32 object-cover rounded-md mb-3" />
-                        <h3 className="text-white text-sm font-medium truncate">{product.title}</h3>
-                        <p className="text-amazon-orange font-bold mt-1">${product.price}</p>
-                      </motion.div>
-                    ))}
-                  </div>
+                  <HeroPreviewCards products={filteredProducts} />
                 </div>
               </div>
             </motion.div>
@@ -155,7 +142,7 @@ const Index = () => {
       </section>
 
       {/* Featured Products Slider */}
-      <section className="py-16 bg-white">
+      <section ref={productsRef} className="py-16 bg-white">
         <div className="container-padding">
           <h2 className="section-title text-center mb-12">Featured Products</h2>
           <div className="max-w-5xl mx-auto">
