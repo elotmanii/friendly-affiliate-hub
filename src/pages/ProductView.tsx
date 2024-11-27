@@ -57,13 +57,11 @@ const ProductView = () => {
     ]
   };
 
-  // Update document title for SEO
   useEffect(() => {
     document.title = `${product.title} - Best Price & Reviews`;
-    // Add meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', `${product.description.slice(0, 155)}...`);
+      metaDescription.setAttribute('content', product.description.slice(0, 155) + '...');
     }
   }, [product.title, product.description]);
 
@@ -77,7 +75,7 @@ const ProductView = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed right-4 top-4 z-50 bg-white/80 hover:bg-white shadow-md"
+        className="fixed right-4 top-4 z-50 bg-white/80 hover:bg-white shadow-md rounded-full"
         onClick={() => navigate('/')}
       >
         <X className="h-5 w-5" />
@@ -85,12 +83,13 @@ const ProductView = () => {
 
       <div className="container-padding py-8 md:py-12">
         <div className="max-w-7xl mx-auto">
-          <article className="bg-white rounded-xl shadow-xl overflow-hidden">
-            <div className="grid lg:grid-cols-2 gap-8 p-8">
+          <article className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="grid lg:grid-cols-2 gap-12 p-8">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
+                className="lg:sticky lg:top-8"
               >
                 <ProductImageGallery images={product.images} title={product.title} />
               </motion.div>
@@ -99,23 +98,23 @@ const ProductView = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                className="space-y-6"
+                className="space-y-8"
               >
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <span className="inline-block px-3 py-1 bg-amazon-orange/10 text-amazon-orange rounded-full text-sm font-medium">
                     {product.category}
                   </span>
-                  <h1 className="text-3xl font-bold text-amazon-dark">
+                  <h1 className="text-4xl font-bold text-amazon-dark">
                     {product.title}
                   </h1>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <div className="flex items-center">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-4 w-4 ${
+                        className={`h-5 w-5 ${
                           i < Math.floor(product.rating)
                             ? 'text-amazon-yellow fill-current'
                             : 'text-gray-300'
@@ -128,46 +127,46 @@ const ProductView = () => {
                   </span>
                 </div>
 
-                <div className="text-3xl font-bold text-amazon-dark">
+                <div className="text-4xl font-bold text-amazon-dark">
                   ${product.price.toFixed(2)}
                 </div>
 
                 <Button
                   size="lg"
-                  className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold"
+                  className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold h-14 text-lg"
                 >
-                  <ShoppingCart className="h-5 w-5 mr-2" />
+                  <ShoppingCart className="h-6 w-6 mr-2" />
                   View on Amazon
                 </Button>
 
-                <Separator className="my-6" />
+                <Separator className="my-8" />
 
-                <div className="prose prose-sm max-w-none">
-                  <h2 className="text-xl font-semibold mb-3">Product Description</h2>
+                <div className="prose prose-lg max-w-none">
+                  <h2 className="text-2xl font-semibold mb-4">Product Description</h2>
                   <p className="text-gray-600 leading-relaxed">
                     {product.description}
                   </p>
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-xl font-semibold">Key Features</h2>
-                  <ul className="space-y-2">
+                <div className="space-y-6">
+                  <h2 className="text-2xl font-semibold">Key Features</h2>
+                  <ul className="space-y-3">
                     {product.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2 text-gray-600">
-                        <span className="text-amazon-orange">•</span>
-                        {feature}
+                      <li key={index} className="flex items-start gap-3 text-gray-600">
+                        <span className="text-amazon-orange text-xl">•</span>
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-xl font-semibold">Technical Specifications</h2>
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-6">
+                  <h2 className="text-2xl font-semibold">Technical Specifications</h2>
+                  <div className="grid grid-cols-2 gap-6">
                     {Object.entries(product.specs).map(([key, value]) => (
-                      <div key={key} className="space-y-1">
-                        <dt className="text-sm text-gray-500 capitalize">{key}</dt>
-                        <dd className="font-medium text-amazon-dark">{value}</dd>
+                      <div key={key} className="space-y-2">
+                        <dt className="text-gray-500 capitalize">{key}</dt>
+                        <dd className="font-medium text-amazon-dark text-lg">{value}</dd>
                       </div>
                     ))}
                   </div>
@@ -175,7 +174,7 @@ const ProductView = () => {
               </motion.div>
             </div>
             
-            <div className="border-t border-gray-100 p-8">
+            <div className="border-t border-gray-100 p-8 bg-gray-50">
               <ProductReviews reviews={product.reviews} />
             </div>
           </article>

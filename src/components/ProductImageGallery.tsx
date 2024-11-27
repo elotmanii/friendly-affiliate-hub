@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -20,35 +20,42 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="relative aspect-square rounded-xl overflow-hidden bg-white shadow-lg">
-        <motion.img
-          key={currentImageIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          src={images[currentImageIndex]}
-          alt={`${title} - Image ${currentImageIndex + 1}`}
-          className="w-full h-full object-contain"
-        />
+    <div className="space-y-6">
+      <div className="relative aspect-square bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentImageIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 flex items-center justify-center p-8"
+          >
+            <img
+              src={images[currentImageIndex]}
+              alt={`${title} - Image ${currentImageIndex + 1}`}
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        </AnimatePresence>
         
         {images.length > 1 && (
           <>
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-10 h-10 border-none"
               onClick={previousImage}
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-5 w-5" />
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-10 h-10 border-none"
               onClick={nextImage}
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-5 w-5" />
             </Button>
           </>
         )}
@@ -56,14 +63,20 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2 px-1">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="grid grid-cols-4 sm:grid-cols-5 gap-4 px-2"
+        >
           {images.map((image, index) => (
-            <button
+            <motion.button
               key={index}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setCurrentImageIndex(index)}
-              className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all duration-200 ${
+              className={`relative rounded-xl overflow-hidden aspect-square transition-all duration-200 ${
                 index === currentImageIndex
-                  ? 'ring-2 ring-amazon-orange'
+                  ? 'ring-2 ring-amazon-orange shadow-lg'
                   : 'ring-1 ring-gray-200 hover:ring-amazon-blue'
               }`}
             >
@@ -77,9 +90,16 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
                   index === currentImageIndex ? 'hidden' : ''
                 }`}
               />
-            </button>
+              {index === currentImageIndex && (
+                <motion.div
+                  layoutId="activeImage"
+                  className="absolute inset-0 border-2 border-amazon-orange rounded-xl"
+                  transition={{ duration: 0.2 }}
+                />
+              )}
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );
