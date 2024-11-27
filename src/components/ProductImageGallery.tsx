@@ -21,24 +21,20 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="relative aspect-square bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+      <div className="relative aspect-square bg-white rounded-2xl overflow-hidden">
         <AnimatePresence mode="wait">
-          <motion.div
+          <motion.img
             key={currentImageIndex}
+            src={images[currentImageIndex]}
+            alt={`${title} - Image ${currentImageIndex + 1}`}
+            className="w-full h-full object-contain p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 flex items-center justify-center p-8"
-          >
-            <img
-              src={images[currentImageIndex]}
-              alt={`${title} - Image ${currentImageIndex + 1}`}
-              className="w-full h-full object-contain"
-            />
-          </motion.div>
+          />
         </AnimatePresence>
-        
+
         {images.length > 1 && (
           <>
             <Button
@@ -61,23 +57,16 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
         )}
       </div>
 
-      {/* Thumbnails */}
       {images.length > 1 && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="grid grid-cols-4 sm:grid-cols-5 gap-4 px-2"
-        >
+        <div className="grid grid-cols-5 gap-2">
           {images.map((image, index) => (
-            <motion.button
+            <button
               key={index}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
               onClick={() => setCurrentImageIndex(index)}
-              className={`relative rounded-xl overflow-hidden aspect-square transition-all duration-200 ${
+              className={`relative rounded-lg overflow-hidden aspect-square border-2 transition-all duration-200 ${
                 index === currentImageIndex
-                  ? 'ring-2 ring-amazon-orange shadow-lg'
-                  : 'ring-1 ring-gray-200 hover:ring-amazon-blue'
+                  ? 'border-amazon-orange'
+                  : 'border-transparent hover:border-amazon-blue'
               }`}
             >
               <img
@@ -85,21 +74,9 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
                 alt={`${title} thumbnail ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div
-                className={`absolute inset-0 bg-black/5 ${
-                  index === currentImageIndex ? 'hidden' : ''
-                }`}
-              />
-              {index === currentImageIndex && (
-                <motion.div
-                  layoutId="activeImage"
-                  className="absolute inset-0 border-2 border-amazon-orange rounded-xl"
-                  transition={{ duration: 0.2 }}
-                />
-              )}
-            </motion.button>
+            </button>
           ))}
-        </motion.div>
+        </div>
       )}
     </div>
   );
