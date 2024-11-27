@@ -83,13 +83,13 @@ const ProductView = () => {
 
       <div className="container-padding h-screen py-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 h-full">
-            <div className="p-8">
+          <div className="grid lg:grid-cols-[400px_1fr] h-full">
+            <div className="p-6 bg-gray-50">
               <ProductImageGallery images={product.images} title={product.title} />
             </div>
             
             <ScrollArea className="h-full border-l border-gray-100">
-              <div className="p-8 space-y-6">
+              <div className="p-6 space-y-6">
                 <div>
                   <span className="inline-block px-3 py-1 bg-amazon-orange/10 text-amazon-orange rounded-full text-sm font-medium">
                     {product.category}

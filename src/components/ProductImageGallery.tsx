@@ -20,8 +20,8 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="relative aspect-square bg-white rounded-2xl overflow-hidden">
+    <div className="space-y-4">
+      <div className="relative aspect-square bg-white rounded-xl overflow-hidden border border-gray-100">
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImageIndex}
@@ -40,18 +40,18 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
             <Button
               variant="outline"
               size="icon"
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-10 h-10 border-none"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-8 h-8 border-none"
               onClick={previousImage}
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4" />
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-10 h-10 border-none"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full w-8 h-8 border-none"
               onClick={nextImage}
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-4 w-4" />
             </Button>
           </>
         )}
@@ -65,7 +65,7 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
               onClick={() => setCurrentImageIndex(index)}
               className={`relative rounded-lg overflow-hidden aspect-square border-2 transition-all duration-200 ${
                 index === currentImageIndex
-                  ? 'border-amazon-orange'
+                  ? 'border-amazon-orange ring-2 ring-amazon-orange/20'
                   : 'border-transparent hover:border-amazon-blue'
               }`}
             >
