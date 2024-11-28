@@ -84,13 +84,15 @@ const ProductView = () => {
       <div className="container-padding h-screen py-4 sm:py-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full max-w-7xl mx-auto relative">
           <div className="grid lg:grid-cols-[400px_1fr] h-full">
-            {/* Image Gallery Section - Responsive */}
-            <div className="p-4 sm:p-6 bg-gray-50 lg:h-full h-[40vh] min-h-[300px]">
-              <ProductImageGallery images={product.images} title={product.title} />
-            </div>
+            {/* Image Gallery Section - Scrollable on Mobile */}
+            <ScrollArea className="lg:p-4 sm:p-6 bg-gray-50 lg:h-full h-[45vh] min-h-[300px] relative">
+              <div className="p-4">
+                <ProductImageGallery images={product.images} title={product.title} />
+              </div>
+            </ScrollArea>
             
-            {/* Product Info Section - Scrollable with Fixed Button on Mobile */}
-            <div className="relative h-[60vh] lg:h-full border-l border-gray-100">
+            {/* Product Info Section - Scrollable with Fixed Button */}
+            <div className="relative h-[55vh] lg:h-full border-l border-gray-100">
               <ScrollArea className="h-full pb-24 lg:pb-0">
                 <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                   <div>
