@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShoppingCart, X, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import ProductImageGallery from '@/components/ProductImageGallery';
 import ProductReviews from '@/components/ProductReviews';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,6 +17,7 @@ const ProductView = () => {
     id: 1,
     title: "Sony WH-1000XM4 Wireless Headphones",
     price: 299.99,
+    discount: 20, // Added discount
     rating: 4.8,
     images: [
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
@@ -57,6 +59,10 @@ const ProductView = () => {
     ]
   };
 
+  const discountedPrice = product.discount 
+    ? product.price * (1 - product.discount / 100)
+    : product.price;
+
   useEffect(() => {
     document.title = `${product.title} - Best Price & Reviews`;
     const metaDescription = document.querySelector('meta[name="description"]');
@@ -84,7 +90,12 @@ const ProductView = () => {
       <div className="container-padding h-screen py-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[400px_1fr] h-full">
-            <div className="p-6 bg-gray-50">
+            <div className="p-6 bg-gray-50 relative">
+              {product.discount && (
+                <Badge className="absolute top-8 right-8 z-10 bg-amazon-orange text-black font-bold">
+                  {product.discount}% OFF
+                </Badge>
+              )}
               <ProductImageGallery images={product.images} title={product.title} />
             </div>
             
@@ -117,8 +128,15 @@ const ProductView = () => {
                   </span>
                 </div>
 
-                <div className="text-3xl font-bold text-amazon-dark">
-                  ${product.price.toFixed(2)}
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl font-bold text-amazon-dark">
+                    ${discountedPrice.toFixed(2)}
+                  </span>
+                  {product.discount && (
+                    <span className="text-xl text-gray-500 line-through">
+                      ${product.price.toFixed(2)}
+                    </span>
+                  )}
                 </div>
 
                 <Button

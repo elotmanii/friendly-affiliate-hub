@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Star, ShoppingCart } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
+import { Badge } from './ui/badge';
 
 interface ProductCardProps {
   product: {
@@ -11,10 +12,15 @@ interface ProductCardProps {
     rating: number;
     image: string;
     category: string;
+    discount?: number;
   };
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const discountedPrice = product.discount 
+    ? product.price * (1 - product.discount / 100)
+    : product.price;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -29,6 +35,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
             alt={product.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+          {product.discount && (
+            <Badge className="absolute top-2 right-2 bg-amazon-orange text-black font-bold">
+              {product.discount}% OFF
+            </Badge>
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <Button className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold">
@@ -60,8 +71,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </div>
               <span className="text-sm text-gray-600">{product.rating}</span>
             </div>
-            <div className="text-xl font-bold text-amazon-dark">
-              ${product.price.toFixed(2)}
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold text-amazon-dark">
+                ${discountedPrice.toFixed(2)}
+              </span>
+              {product.discount && (
+                <span className="text-sm text-gray-500 line-through">
+                  ${product.price.toFixed(2)}
+                </span>
+              )}
             </div>
           </div>
         </div>

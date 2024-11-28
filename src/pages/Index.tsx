@@ -22,7 +22,8 @@ const Index = () => {
       price: 299.99,
       rating: 4.8,
       image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
-      category: "Electronics"
+      category: "Electronics",
+      discount: 20
     },
     {
       id: 2,
@@ -30,7 +31,8 @@ const Index = () => {
       price: 199.99,
       rating: 4.6,
       image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
-      category: "Wearables"
+      category: "Wearables",
+      discount: 15
     },
     {
       id: 3,
@@ -38,7 +40,8 @@ const Index = () => {
       price: 49.99,
       rating: 4.5,
       image: "https://images.unsplash.com/photo-1609592807597-7e1d57a9c2bf?w=800&q=80",
-      category: "Accessories"
+      category: "Accessories",
+      discount: 30
     },
     {
       id: 4,
@@ -46,7 +49,8 @@ const Index = () => {
       price: 249.99,
       rating: 4.9,
       image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&q=80",
-      category: "Electronics"
+      category: "Electronics",
+      discount: 25
     },
     {
       id: 5,
@@ -54,7 +58,8 @@ const Index = () => {
       price: 279.99,
       rating: 4.7,
       image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80",
-      category: "Wearables"
+      category: "Wearables",
+      discount: 10
     }
   ];
 
