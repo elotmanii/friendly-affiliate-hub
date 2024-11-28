@@ -17,6 +17,7 @@ const products: Product[] = [
     price: 299.99,
     discount: 20,
     rating: 4.8,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
     images: [
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
       "https://images.unsplash.com/photo-1577174881658-0f30ed549adc?w=800&q=80",
@@ -62,6 +63,7 @@ const products: Product[] = [
     price: 199.99,
     discount: 15,
     rating: 4.6,
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
     images: [
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
       "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80"
@@ -98,6 +100,7 @@ const products: Product[] = [
     price: 49.99,
     discount: 30,
     rating: 4.5,
+    image: "https://images.unsplash.com/photo-1609592807597-7e1d57a9c2bf?w=800&q=80",
     images: [
       "https://images.unsplash.com/photo-1609592807597-7e1d57a9c2bf?w=800&q=80"
     ],
@@ -124,6 +127,80 @@ const products: Product[] = [
         date: "2024-02-12",
         verified: true,
         comment: "Great capacity, charges my devices multiple times!"
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "Apple AirPods Pro",
+    price: 249.99,
+    rating: 4.9,
+    discount: 25,
+    image: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&q=80",
+      "https://images.unsplash.com/photo-1588156979435-379b9d802b0a?w=800&q=80"
+    ],
+    category: "Electronics",
+    description: "Active noise cancellation for immersive sound. Transparency mode for hearing what's happening around you...",
+    features: [
+      "Active Noise Cancellation",
+      "Transparency mode",
+      "Adaptive EQ",
+      "Spatial audio",
+      "Water and sweat resistant"
+    ],
+    specs: {
+      batteryLife: "4.5 hours",
+      connectivity: "Bluetooth 5.0",
+      weight: "5.4g per pod",
+      color: "White"
+    },
+    reviews: [
+      {
+        id: "1",
+        rating: 5,
+        author: "James P.",
+        date: "2024-02-16",
+        verified: true,
+        comment: "Amazing sound quality and noise cancellation!"
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: "Samsung Galaxy Watch 4",
+    price: 279.99,
+    rating: 4.7,
+    discount: 10,
+    image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+    ],
+    category: "Wearables",
+    description: "Advanced health monitoring with body composition analysis...",
+    features: [
+      "Body composition analysis",
+      "Advanced sleep tracking",
+      "ECG monitoring",
+      "40+ workout modes",
+      "5ATM water resistance"
+    ],
+    specs: {
+      batteryLife: "40 hours",
+      connectivity: "Bluetooth 5.0",
+      weight: "30.3g",
+      color: "Black"
+    },
+    reviews: [
+      {
+        id: "1",
+        rating: 4,
+        author: "Emily R.",
+        date: "2024-02-15",
+        verified: true,
+        comment: "Great fitness tracking features and comfortable to wear!"
       }
     ]
   }
