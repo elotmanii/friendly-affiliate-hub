@@ -8,6 +8,10 @@ export interface Product {
   category: string;
   description?: string;
   discount?: number;
+  features?: string[];
+  specs?: {
+    [key: string]: string;
+  };
   reviews?: {
     id: string;
     rating: number;
