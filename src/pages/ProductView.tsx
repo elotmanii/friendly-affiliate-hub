@@ -7,17 +7,15 @@ import ProductImageGallery from '@/components/ProductImageGallery';
 import ProductReviews from '@/components/ProductReviews';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useEffect } from 'react';
+import { Product } from '@/types/product';
 
-const ProductView = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  
-  // For demo purposes, using static data
-  const product = {
+// Mock products data - in a real app, this would come from an API
+const products: Product[] = [
+  {
     id: 1,
     title: "Sony WH-1000XM4 Wireless Headphones",
     price: 299.99,
-    discount: 20, // Added discount
+    discount: 20,
     rating: 4.8,
     images: [
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
@@ -25,7 +23,7 @@ const ProductView = () => {
       "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80"
     ],
     category: "Electronics",
-    description: "Industry-leading noise canceling with Dual Noise Sensor technology. Next-level music with Edge-AI, co-developed with Sony Music Studios Tokyo. Up to 30-hour battery life with quick charging (10 min charge for 5 hours of playback).",
+    description: "Industry-leading noise canceling with Dual Noise Sensor technology...",
     features: [
       "Industry-leading noise cancellation",
       "Exceptional sound quality with LDAC technology",
@@ -57,7 +55,98 @@ const ProductView = () => {
         comment: "Great sound quality and comfortable for long periods."
       }
     ]
-  };
+  },
+  {
+    id: 2,
+    title: "Fitbit Versa 3 Smart Watch",
+    price: 199.99,
+    discount: 15,
+    rating: 4.6,
+    images: [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+      "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=800&q=80"
+    ],
+    category: "Wearables",
+    description: "Advanced fitness tracking with built-in GPS and heart rate monitoring...",
+    features: [
+      "Built-in GPS",
+      "24/7 heart rate tracking",
+      "6+ day battery life",
+      "Water resistant to 50m",
+      "Voice assistant compatibility"
+    ],
+    specs: {
+      batteryLife: "6+ days",
+      connectivity: "Bluetooth 5.0",
+      weight: "40g",
+      color: "Black/Gray"
+    },
+    reviews: [
+      {
+        id: "1",
+        rating: 5,
+        author: "Mike R.",
+        date: "2024-02-14",
+        verified: true,
+        comment: "Perfect fitness companion! The GPS is very accurate."
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Anker PowerCore 26800mAh",
+    price: 49.99,
+    discount: 30,
+    rating: 4.5,
+    images: [
+      "https://images.unsplash.com/photo-1609592807597-7e1d57a9c2bf?w=800&q=80"
+    ],
+    category: "Accessories",
+    description: "High-capacity portable charger with fast charging capability...",
+    features: [
+      "26800mAh capacity",
+      "Triple USB output",
+      "Fast charging technology",
+      "Compatible with all USB devices",
+      "Includes travel pouch"
+    ],
+    specs: {
+      capacity: "26800mAh",
+      ports: "3x USB-A",
+      weight: "490g",
+      color: "Black"
+    },
+    reviews: [
+      {
+        id: "1",
+        rating: 4,
+        author: "Lisa K.",
+        date: "2024-02-12",
+        verified: true,
+        comment: "Great capacity, charges my devices multiple times!"
+      }
+    ]
+  }
+];
+
+const ProductView = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
+  // Find the product based on the ID from URL params
+  const product = products.find(p => p.id === Number(id));
+
+  // If product not found, show error or redirect
+  if (!product) {
+    return (
+      <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-bold mb-4">Product Not Found</h2>
+          <Button onClick={() => navigate('/')}>Return to Home</Button>
+        </div>
+      </div>
+    );
+  }
 
   const discountedPrice = product.discount 
     ? product.price * (1 - product.discount / 100)
@@ -67,7 +156,7 @@ const ProductView = () => {
     document.title = `${product.title} - Best Price & Reviews`;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', product.description.slice(0, 155) + '...');
+      metaDescription.setAttribute('content', product.description?.slice(0, 155) + '...');
     }
   }, [product.title, product.description]);
 
