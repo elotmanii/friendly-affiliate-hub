@@ -81,20 +81,22 @@ const ProductView = () => {
         <X className="h-5 w-5" />
       </Button>
 
-      <div className="container-padding h-screen py-8">
+      <div className="container-padding h-screen py-4 sm:py-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[400px_1fr] h-full">
-            <div className="p-6 bg-gray-50">
+            {/* Image Gallery Section - Responsive */}
+            <div className="p-4 sm:p-6 bg-gray-50 lg:h-full h-[40vh] min-h-[300px]">
               <ProductImageGallery images={product.images} title={product.title} />
             </div>
             
-            <ScrollArea className="h-full border-l border-gray-100">
-              <div className="p-6 space-y-6">
+            {/* Product Info Section - Scrollable on Mobile */}
+            <ScrollArea className="h-[60vh] lg:h-full border-l border-gray-100">
+              <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 <div>
                   <span className="inline-block px-3 py-1 bg-amazon-orange/10 text-amazon-orange rounded-full text-sm font-medium">
                     {product.category}
                   </span>
-                  <h1 className="text-3xl font-bold text-amazon-dark mt-2">
+                  <h1 className="text-2xl sm:text-3xl font-bold text-amazon-dark mt-2">
                     {product.title}
                   </h1>
                 </div>
@@ -104,7 +106,7 @@ const ProductView = () => {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-5 w-5 ${
+                        className={`h-4 w-4 ${
                           i < Math.floor(product.rating)
                             ? 'text-amazon-yellow fill-current'
                             : 'text-gray-300'
@@ -117,50 +119,50 @@ const ProductView = () => {
                   </span>
                 </div>
 
-                <div className="text-3xl font-bold text-amazon-dark">
+                <div className="text-2xl sm:text-3xl font-bold text-amazon-dark">
                   ${product.price.toFixed(2)}
                 </div>
 
                 <Button
                   size="lg"
-                  className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold h-14 text-lg"
+                  className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold h-12 sm:h-14 text-base sm:text-lg"
                 >
-                  <ShoppingCart className="h-6 w-6 mr-2" />
+                  <ShoppingCart className="h-5 w-5 mr-2" />
                   View on Amazon
                 </Button>
 
-                <div className="prose prose-lg max-w-none">
-                  <h2 className="text-2xl font-semibold text-amazon-dark">Product Description</h2>
+                <div className="prose prose-sm sm:prose-base max-w-none">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-amazon-dark">Product Description</h2>
                   <p className="text-gray-600 leading-relaxed">
                     {product.description}
                   </p>
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-semibold text-amazon-dark">Key Features</h2>
-                  <ul className="space-y-3">
+                <div className="space-y-3 sm:space-y-4">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-amazon-dark">Key Features</h2>
+                  <ul className="space-y-2 sm:space-y-3">
                     {product.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-3 text-gray-600">
                         <span className="text-amazon-orange text-xl">•</span>
-                        <span>{feature}</span>
+                        <span className="text-sm sm:text-base">{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-semibold text-amazon-dark">Technical Specifications</h2>
-                  <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-3 sm:space-y-4">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-amazon-dark">Technical Specifications</h2>
+                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
                     {Object.entries(product.specs).map(([key, value]) => (
                       <div key={key} className="space-y-1">
-                        <dt className="text-gray-500 capitalize">{key}</dt>
-                        <dd className="font-medium text-amazon-dark">{value}</dd>
+                        <dt className="text-gray-500 capitalize text-sm sm:text-base">{key}</dt>
+                        <dd className="font-medium text-amazon-dark text-sm sm:text-base">{value}</dd>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-6">
+                <div className="pt-4 sm:pt-6">
                   <ProductReviews reviews={product.reviews} />
                 </div>
               </div>
