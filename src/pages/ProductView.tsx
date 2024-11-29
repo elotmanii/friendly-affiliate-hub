@@ -1,15 +1,15 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ShoppingCart, X, Star } from "lucide-react";
+import { ShoppingCart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import ProductImageGallery from "@/components/ProductImageGallery";
-import ProductReviews from "@/components/ProductReviews";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useEffect } from "react";
+import ProductImageGallery from "@/components/ProductImageGallery";
+import ProductReviews from "@/components/ProductReviews";
+import ProductHeader from "@/components/product/ProductHeader";
+import ProductDetails from "@/components/product/ProductDetails";
 import { Product } from "@/types/product";
 
-// Mock products data - in a real app, this would come from an API
 const products: Product[] = [
   {
     id: 1,
@@ -181,11 +181,21 @@ const products: Product[] = [
 const ProductView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // Find the product based on the ID from URL params
   const product = products.find((p) => p.id === Number(id));
 
-  // If product not found, show error or redirect
+  useEffect(() => {
+    if (product) {
+      document.title = `${product.title} - Best Price & Reviews`;
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          "content",
+          product.description?.slice(0, 155) + "..."
+        );
+      }
+    }
+  }, [product]);
+
   if (!product) {
     return (
       <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -197,27 +207,12 @@ const ProductView = () => {
     );
   }
 
-  const discountedPrice = product.discount
-    ? product.price * (1 - product.discount / 100)
-    : product.price;
-
-  useEffect(() => {
-    document.title = `${product.title} - Best Price & Reviews`;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        product.description?.slice(0, 155) + "...",
-      );
-    }
-  }, [product.title, product.description]);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 overflow-hidden"
+      className="fixed inset-0 bg-background z-50"
     >
       <Button
         variant="ghost"
@@ -228,118 +223,30 @@ const ProductView = () => {
         <X className="h-5 w-5" />
       </Button>
 
-      <div className="container-padding h-screen py-8">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[400px_1fr] h-full">
-            <div className="p-6 bg-gray-50 relative">
-              {product.discount && (
-                <Badge className="absolute top-8 right-8 z-10 bg-amazon-orange text-black font-bold">
-                  {product.discount}% OFF
-                </Badge>
-              )}
-              <ProductImageGallery
-                images={product.images}
-                title={product.title}
-              />
-            </div>
-
-            <ScrollArea className="h-full border-l border-gray-100">
-              <div className="p-6 space-y-6">
-                <div>
-                  <span className="inline-block px-3 py-1 bg-amazon-orange/10 text-amazon-orange rounded-full text-sm font-medium">
-                    {product.category}
-                  </span>
-                  <h1 className="text-3xl font-bold text-amazon-dark mt-2">
-                    {product.title}
-                  </h1>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-5 w-5 ${
-                          i < Math.floor(product.rating)
-                            ? "text-amazon-yellow fill-current"
-                            : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-lg font-medium text-amazon-dark">
-                    {product.rating} rating
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl font-bold text-amazon-dark">
-                    ${discountedPrice.toFixed(2)}
-                  </span>
-                  {product.discount && (
-                    <span className="text-xl text-gray-500 line-through">
-                      ${product.price.toFixed(2)}
-                    </span>
-                  )}
-                </div>
-
-                <Button
-                  size="lg"
-                  className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold h-14 text-lg"
-                >
-                  <ShoppingCart className="h-6 w-6 mr-2" />
-                  View on Amazon
-                </Button>
-
-                <div className="prose prose-lg max-w-none">
-                  <h2 className="text-2xl font-semibold text-amazon-dark">
-                    Product Description
-                  </h2>
-                  <p className="text-gray-600 leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-semibold text-amazon-dark">
-                    Key Features
-                  </h2>
-                  <ul className="space-y-3">
-                    {product.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-3 text-gray-600"
-                      >
-                        <span className="text-amazon-orange text-xl">•</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-semibold text-amazon-dark">
-                    Technical Specifications
-                  </h2>
-                  <div className="grid grid-cols-2 gap-6">
-                    {Object.entries(product.specs).map(([key, value]) => (
-                      <div key={key} className="space-y-1">
-                        <dt className="text-gray-500 capitalize">{key}</dt>
-                        <dd className="font-medium text-amazon-dark">
-                          {value}
-                        </dd>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-6">
-                  <ProductReviews reviews={product.reviews} />
-                </div>
-              </div>
-            </ScrollArea>
-          </div>
+      <div className="h-screen grid lg:grid-cols-[1fr_1.5fr] overflow-hidden">
+        <div className="bg-gray-50 p-8 overflow-auto">
+          <ProductImageGallery images={product.images || [product.image]} title={product.title} />
         </div>
+
+        <ScrollArea className="h-full border-l border-gray-100">
+          <div className="p-8 space-y-8">
+            <ProductHeader product={product} />
+            
+            <Button
+              size="lg"
+              className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold h-14 text-lg"
+            >
+              <ShoppingCart className="h-6 w-6 mr-2" />
+              View on Amazon
+            </Button>
+
+            <ProductDetails product={product} />
+            
+            <div className="pt-6">
+              <ProductReviews reviews={product.reviews || []} />
+            </div>
+          </div>
+        </ScrollArea>
       </div>
     </motion.div>
   );

@@ -16,6 +16,7 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import { Product } from "../types/product";
+import FeaturedCategories from "@/components/home/FeaturedCategories";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -122,9 +123,11 @@ const Index = () => {
                 >
                   Learn More
                 </Button>
+
+                <HeroFeatures features={heroFeatures} />
               </div>
 
-              <HeroFeatures features={heroFeatures} />
+              <HeroPreviewCards products={filteredProducts} />
             </motion.div>
 
             <motion.div
@@ -162,6 +165,9 @@ const Index = () => {
       <section ref={productsRef} className="py-16 bg-white">
         <div className="container-padding">
           <h2 className="section-title text-center mb-12">Featured Products</h2>
+          
+          <FeaturedCategories products={featuredProducts} />
+          
           <div className="max-w-5xl mx-auto">
             <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent>
