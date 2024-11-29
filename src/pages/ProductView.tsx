@@ -1,11 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ShoppingCart, X, Star } from 'lucide-react';
+import { ShoppingCart, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import ProductImageGallery from '@/components/ProductImageGallery';
 import ProductReviews from '@/components/ProductReviews';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import AffiliateButtons from '@/components/AffiliateButtons';
 import { useEffect } from 'react';
 import { Product } from '@/types/product';
 
@@ -55,7 +56,12 @@ const products: Product[] = [
         verified: true,
         comment: "Great sound quality and comfortable for long periods."
       }
-    ]
+    ],
+    affiliateLinks: {
+      amazon: "https://www.amazon.com/dp/B0863TXGMY",
+      ebay: "https://www.ebay.com/itm/1234567890",
+      aliexpress: "https://www.aliexpress.com/item/1234567890"
+    }
   },
   {
     id: 2,
@@ -92,7 +98,12 @@ const products: Product[] = [
         verified: true,
         comment: "Perfect fitness companion! The GPS is very accurate."
       }
-    ]
+    ],
+    affiliateLinks: {
+      amazon: "https://www.amazon.com/dp/B08DFD2F7P",
+      ebay: "https://www.ebay.com/itm/1234567890",
+      aliexpress: "https://www.aliexpress.com/item/1234567890"
+    }
   },
   {
     id: 3,
@@ -128,7 +139,12 @@ const products: Product[] = [
         verified: true,
         comment: "Great capacity, charges my devices multiple times!"
       }
-    ]
+    ],
+    affiliateLinks: {
+      amazon: "https://www.amazon.com/dp/B07Q1FSC2B",
+      ebay: "https://www.ebay.com/itm/1234567890",
+      aliexpress: "https://www.aliexpress.com/item/1234567890"
+    }
   },
   {
     id: 4,
@@ -165,7 +181,12 @@ const products: Product[] = [
         verified: true,
         comment: "Amazing sound quality and noise cancellation!"
       }
-    ]
+    ],
+    affiliateLinks: {
+      amazon: "https://www.amazon.com/dp/B08J6X8KJW",
+      ebay: "https://www.ebay.com/itm/1234567890",
+      aliexpress: "https://www.aliexpress.com/item/1234567890"
+    }
   },
   {
     id: 5,
@@ -202,7 +223,12 @@ const products: Product[] = [
         verified: true,
         comment: "Great fitness tracking features and comfortable to wear!"
       }
-    ]
+    ],
+    affiliateLinks: {
+      amazon: "https://www.amazon.com/dp/B0979V8T97",
+      ebay: "https://www.ebay.com/itm/1234567890",
+      aliexpress: "https://www.aliexpress.com/item/1234567890"
+    }
   }
 ];
 
@@ -210,10 +236,8 @@ const ProductView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  // Find the product based on the ID from URL params
   const product = products.find(p => p.id === Number(id));
 
-  // If product not found, show error or redirect
   if (!product) {
     return (
       <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -305,13 +329,10 @@ const ProductView = () => {
                   )}
                 </div>
 
-                <Button
-                  size="lg"
-                  className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold h-14 text-lg"
-                >
-                  <ShoppingCart className="h-6 w-6 mr-2" />
-                  View on Amazon
-                </Button>
+                <AffiliateButtons 
+                  affiliateLinks={product.affiliateLinks}
+                  className="max-w-md"
+                />
 
                 <div className="prose prose-lg max-w-none">
                   <h2 className="text-2xl font-semibold text-amazon-dark">Product Description</h2>

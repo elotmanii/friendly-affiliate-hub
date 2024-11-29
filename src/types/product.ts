@@ -20,4 +20,9 @@ export interface Product {
     date: string;
     verified: boolean;
   }[];
+  affiliateLinks?: {
+    amazon?: string;
+    ebay?: string;
+    aliexpress?: string;
+  };
 }

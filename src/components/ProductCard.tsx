@@ -13,6 +13,11 @@ interface ProductCardProps {
     image: string;
     category: string;
     discount?: number;
+    affiliateLinks?: {
+      amazon?: string;
+      ebay?: string;
+      aliexpress?: string;
+    };
   };
 }
 
@@ -44,7 +49,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <Button className="w-full bg-amazon-yellow hover:bg-amazon-orange text-black font-semibold">
               <ShoppingCart className="h-4 w-4 mr-2" />
-              View on Amazon
+              View Details
             </Button>
           </div>
         </Link>
