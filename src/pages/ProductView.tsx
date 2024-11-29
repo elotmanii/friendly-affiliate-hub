@@ -76,6 +76,7 @@ const ProductView = () => {
 
                 <AffiliateButtons 
                   affiliateLinks={product.affiliateLinks}
+                  socialLinks={product.socialLinks}
                   className="max-w-md"
                 />
 

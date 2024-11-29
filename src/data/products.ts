@@ -46,6 +46,10 @@ export const products: Product[] = [
       amazon: "https://amazon.com/example",
       ebay: "https://ebay.com/example",
       aliexpress: "https://aliexpress.com/example"
+    },
+    socialLinks: {
+      telegram: "https://t.me/yourgroup",
+      facebook: "https://facebook.com/groups/yourgroup"
     }
   },
   {

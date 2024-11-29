@@ -25,4 +25,8 @@ export interface Product {
     ebay?: string;
     aliexpress?: string;
   };
+  socialLinks?: {
+    telegram?: string;
+    facebook?: string;
+  };
 }
