@@ -2,13 +2,12 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import ProductCard from '../components/ProductCard';
 import Newsletter from '../components/Newsletter';
 import SearchProducts from '../components/SearchProducts';
 import HeroFeatures from '../components/HeroFeatures';
 import HeroPreviewCards from '../components/HeroPreviewCards';
+import FeaturedProducts from '../components/FeaturedProducts';
 import { filterProducts } from '../utils/search';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Product } from '../types/product';
 
 const Index = () => {
@@ -146,27 +145,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured Products Slider */}
-      <section ref={productsRef} className="py-16 bg-white">
-        <div className="container-padding">
-          <h2 className="section-title text-center mb-12">Featured Products</h2>
-          <div className="max-w-5xl mx-auto">
-            <Carousel opts={{ align: "start", loop: true }} className="w-full">
-              <CarouselContent>
-                {filteredProducts.map((product) => (
-                  <CarouselItem key={product.id} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                    <ProductCard product={product} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <div className="hidden sm:block">
-                <CarouselPrevious />
-                <CarouselNext />
-              </div>
-            </Carousel>
-          </div>
-        </div>
-      </section>
+      {/* Featured Products Section */}
+      <FeaturedProducts products={filteredProducts} />
 
       {/* Trust Section */}
       <section className="py-16 bg-background">
