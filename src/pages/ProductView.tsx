@@ -11,7 +11,7 @@ import ProductHeader from '@/components/ProductHeader';
 import ProductFeatures from '@/components/ProductFeatures';
 import ProductSpecs from '@/components/ProductSpecs';
 import { useEffect } from 'react';
-import { products } from '@/data/products';
+import { products } from '../data/products';
 
 const ProductView = () => {
   const { id } = useParams();
