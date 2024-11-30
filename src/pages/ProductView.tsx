@@ -49,20 +49,18 @@ const ProductView = () => {
       </Button>
 
       <div className="h-screen max-h-screen overflow-hidden">
-        <div className="h-full flex flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] bg-white">
+        <div className="h-full flex flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
           {/* Left Column - Product Images */}
-          <div className="relative h-[40vh] lg:h-full bg-gray-50 lg:p-8">
-            <div className="h-full max-w-2xl mx-auto">
-              <ProductImageGallery 
-                images={product.images || [product.image]} 
-                title={product.title}
-                socialLinks={product.socialLinks}
-              />
-            </div>
+          <div className="relative h-[45vh] lg:h-full bg-gray-50">
+            <ProductImageGallery 
+              images={product.images || [product.image]} 
+              title={product.title}
+              socialLinks={product.socialLinks}
+            />
           </div>
 
           {/* Right Column - Product Details */}
-          <ScrollArea className="flex-1 lg:h-full relative">
+          <ScrollArea className="flex-1 lg:h-full">
             <div className="px-4 py-6 lg:px-8 lg:py-12 max-w-3xl">
               <div className="space-y-6 lg:space-y-8">
                 <ProductHeader product={product} discountedPrice={discountedPrice} />

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Facebook, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
+import { ScrollArea } from './ui/scroll-area';
 
 interface ProductImageGalleryProps {
   images: string[];
@@ -25,29 +26,31 @@ const ProductImageGallery = ({ images, title, socialLinks }: ProductImageGallery
 
   return (
     <div className="h-full flex flex-col">
-      <div className="flex-1 flex gap-4">
+      <div className="flex-1 flex flex-col lg:flex-row gap-4 p-4 lg:p-8">
         {/* Thumbnails Column - Desktop */}
-        <div className="hidden lg:flex flex-col gap-3 w-24">
-          {images.map((image, index) => (
-            <motion.button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`relative rounded-lg overflow-hidden aspect-square border-2 transition-all duration-200 ${
-                index === currentImageIndex
-                  ? 'border-amazon-orange ring-2 ring-amazon-orange/20'
-                  : 'border-transparent hover:border-amazon-blue'
-              }`}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <img
-                src={image}
-                alt={`${title} thumbnail ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </motion.button>
-          ))}
-        </div>
+        <ScrollArea className="hidden lg:block w-24 h-full">
+          <div className="pr-4 space-y-3">
+            {images.map((image, index) => (
+              <motion.button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`relative rounded-lg overflow-hidden aspect-square border-2 transition-all duration-200 w-full ${
+                  index === currentImageIndex
+                    ? 'border-amazon-orange ring-2 ring-amazon-orange/20'
+                    : 'border-transparent hover:border-amazon-blue'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <img
+                  src={image}
+                  alt={`${title} thumbnail ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </motion.button>
+            ))}
+          </div>
+        </ScrollArea>
 
         {/* Main Image Container */}
         <div className="flex-1 relative bg-white rounded-xl overflow-hidden border border-gray-100">
@@ -89,27 +92,35 @@ const ProductImageGallery = ({ images, title, socialLinks }: ProductImageGallery
               </Button>
             </>
           )}
-
-          {/* Mobile Thumbnails */}
-          <div className="lg:hidden absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 px-4">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
-                  index === currentImageIndex
-                    ? 'bg-amazon-orange scale-125'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
 
+      {/* Mobile Thumbnails */}
+      <ScrollArea className="lg:hidden px-4 pb-4">
+        <div className="flex gap-2">
+          {images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentImageIndex(index)}
+              className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                index === currentImageIndex
+                  ? 'border-amazon-orange ring-2 ring-amazon-orange/20'
+                  : 'border-transparent'
+              }`}
+            >
+              <img
+                src={image}
+                alt={`${title} thumbnail ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </ScrollArea>
+
       {/* Social Links */}
       {(socialLinks?.telegram || socialLinks?.facebook) && (
-        <div className="flex justify-center gap-4 mt-4 px-4 lg:px-0">
+        <div className="flex justify-center gap-4 p-4 bg-gray-50 border-t border-gray-100">
           {socialLinks.telegram && (
             <motion.a
               href={socialLinks.telegram}
