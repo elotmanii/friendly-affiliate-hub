@@ -42,16 +42,16 @@ const ProductView = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed right-6 top-6 z-50 bg-white/80 hover:bg-white shadow-md rounded-full"
+        className="fixed right-4 top-4 z-50 bg-white/80 hover:bg-white shadow-md rounded-full lg:right-6 lg:top-6"
         onClick={() => navigate('/')}
       >
         <X className="h-5 w-5" />
       </Button>
 
       <div className="h-screen max-h-screen overflow-hidden">
-        <div className="h-full grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] bg-white">
+        <div className="h-full flex flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] bg-white">
           {/* Left Column - Product Images */}
-          <div className="relative h-full bg-gray-50 p-8 overflow-hidden">
+          <div className="relative h-[40vh] lg:h-full bg-gray-50 lg:p-8">
             <div className="h-full max-w-2xl mx-auto">
               <ProductImageGallery 
                 images={product.images || [product.image]} 
@@ -62,14 +62,14 @@ const ProductView = () => {
           </div>
 
           {/* Right Column - Product Details */}
-          <ScrollArea className="h-full relative">
-            <div className="px-8 py-12 max-w-3xl">
-              <div className="space-y-8">
+          <ScrollArea className="flex-1 lg:h-full relative">
+            <div className="px-4 py-6 lg:px-8 lg:py-12 max-w-3xl">
+              <div className="space-y-6 lg:space-y-8">
                 <ProductHeader product={product} discountedPrice={discountedPrice} />
 
                 {product.description && (
                   <div className="prose prose-lg max-w-none">
-                    <h2 className="text-2xl font-semibold text-amazon-dark">Product Description</h2>
+                    <h2 className="text-xl lg:text-2xl font-semibold text-amazon-dark">Product Description</h2>
                     <p className="text-gray-600 leading-relaxed">
                       {product.description}
                     </p>
@@ -78,23 +78,24 @@ const ProductView = () => {
 
                 <AffiliateButtons 
                   affiliateLinks={product.affiliateLinks}
+                  socialLinks={product.socialLinks}
                   className="max-w-md"
                 />
 
                 {product.features && (
-                  <div className="pt-8 border-t border-gray-100">
+                  <div className="pt-6 lg:pt-8 border-t border-gray-100">
                     <ProductFeatures features={product.features} />
                   </div>
                 )}
                 
                 {product.specs && (
-                  <div className="pt-8 border-t border-gray-100">
+                  <div className="pt-6 lg:pt-8 border-t border-gray-100">
                     <ProductSpecs specs={product.specs} />
                   </div>
                 )}
 
                 {product.reviews && product.reviews.length > 0 && (
-                  <div className="pt-8 border-t border-gray-100">
+                  <div className="pt-6 lg:pt-8 border-t border-gray-100">
                     <ProductReviews reviews={product.reviews} />
                   </div>
                 )}
