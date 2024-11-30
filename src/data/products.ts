@@ -67,9 +67,9 @@ export const products: Product[] = [
     price: 249.99,
     rating: 4.9,
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+      "https://m.media-amazon.com/images/I/419yjKznzbL._AC_.jpg?w=800&q=80",
     images: [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
+      "https://m.media-amazon.com/images/I/419yjKznzbL._AC_.jpg?w=800&q=80",
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80",
     ],

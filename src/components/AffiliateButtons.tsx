@@ -1,6 +1,6 @@
-import { ShoppingCart, MessageCircle, Facebook } from 'lucide-react';
-import { Button } from './ui/button';
-import { motion } from 'framer-motion';
+import { ShoppingCart, MessageCircle, Facebook } from "lucide-react";
+import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 
 interface AffiliateButtonsProps {
   affiliateLinks?: {
@@ -15,36 +15,57 @@ interface AffiliateButtonsProps {
   className?: string;
 }
 
-const AffiliateButtons = ({ affiliateLinks, socialLinks, className = '' }: AffiliateButtonsProps) => {
+const AffiliateButtons = ({
+  affiliateLinks,
+  socialLinks,
+  className = "",
+}: AffiliateButtonsProps) => {
   const platforms = [
-    { name: 'Amazon', link: affiliateLinks?.amazon, color: 'bg-gradient-to-r from-amazon-yellow to-amazon-orange', icon: ShoppingCart },
-    { name: 'eBay', link: affiliateLinks?.ebay, color: 'bg-gradient-to-r from-[#e53238] to-[#c92b31]', icon: ShoppingCart },
-    { name: 'AliExpress', link: affiliateLinks?.aliexpress, color: 'bg-gradient-to-r from-[#ff4747] to-[#e63e3e]', icon: ShoppingCart }
+    {
+      name: "Amazon",
+      link: affiliateLinks?.amazon,
+      color: "bg-gradient-to-r from-amazon-yellow to-amazon-orange",
+      icon: ShoppingCart,
+    },
+    {
+      name: "eBay",
+      link: affiliateLinks?.ebay,
+      color: "bg-gradient-to-r from-[#e53238] to-[#c92b31]",
+      icon: ShoppingCart,
+    },
+    {
+      name: "AliExpress",
+      link: affiliateLinks?.aliexpress,
+      color: "bg-gradient-to-r from-[#ff4747] to-[#e63e3e]",
+      icon: ShoppingCart,
+    },
   ];
 
-  const availablePlatforms = platforms.filter(platform => platform.link);
+  const availablePlatforms = platforms.filter((platform) => platform.link);
   const availableSocialPlatforms = [
     socialLinks?.telegram && {
-      name: 'Join Telegram Community',
+      name: "Join Telegram Community",
       link: socialLinks.telegram,
       icon: MessageCircle,
-      className: 'group relative overflow-hidden bg-white border-2 border-[#0088cc] text-[#0088cc] hover:text-white transition-colors duration-300 before:content-[""] before:absolute before:inset-0 before:bg-[#0088cc] before:transform before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:-z-10'
+      className:
+        'group relative overflow-hidden bg-white border-2 border-[#0088cc] text-[#0088cc] hover:text-white transition-colors duration-300 before:content-[""] before:absolute before:inset-0 before:bg-[#0088cc] before:transform before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:-z-10',
     },
     socialLinks?.facebook && {
-      name: 'Join Facebook Group',
+      name: "Join Facebook Group",
       link: socialLinks.facebook,
       icon: Facebook,
-      className: 'group relative overflow-hidden bg-white border-2 border-[#1877f2] text-[#1877f2] hover:text-white transition-colors duration-300 before:content-[""] before:absolute before:inset-0 before:bg-[#1877f2] before:transform before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:-z-10'
-    }
+      className:
+        'group relative overflow-hidden bg-white border-2 border-[#1877f2] text-[#1877f2] hover:text-white transition-colors duration-300 before:content-[""] before:absolute before:inset-0 before:bg-[#1877f2] before:transform before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:-z-10',
+    },
   ].filter(Boolean);
 
-  if (availablePlatforms.length === 0 && availableSocialPlatforms.length === 0) return null;
+  if (availablePlatforms.length === 0 && availableSocialPlatforms.length === 0)
+    return null;
 
   return (
     <div className={`space-y-6 ${className}`}>
       {availablePlatforms.length > 0 && (
         <div className="space-y-3">
-          <h3 className="text-lg font-semibold text-gray-900">Shop Now</h3>
           <div className="grid gap-3">
             {availablePlatforms.map((platform) => (
               <motion.a
@@ -66,10 +87,12 @@ const AffiliateButtons = ({ affiliateLinks, socialLinks, className = '' }: Affil
           </div>
         </div>
       )}
-      
+
       {availableSocialPlatforms.length > 0 && (
         <div className="space-y-3">
-          <h3 className="text-lg font-semibold text-gray-900">Join Our Community</h3>
+          <h3 className="text-lg font-semibold text-gray-900">
+            Join Our Community
+          </h3>
           <div className="grid gap-3">
             {availableSocialPlatforms.map((platform) => (
               <motion.a
