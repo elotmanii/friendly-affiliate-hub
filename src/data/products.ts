@@ -7,6 +7,11 @@ export const products: Product[] = [
     price: 299.99,
     rating: 4.8,
     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=800&q=80",
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80"
+    ],
     category: "Electronics",
     description: "Industry-leading noise canceling with Dual Noise Sensor technology. Next-level music with Edge-AI, co-developed with Sony Music Studios Tokyo.",
     discount: 20,

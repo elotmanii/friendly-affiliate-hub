@@ -55,7 +55,8 @@ const ProductView = () => {
             <div className="h-full max-w-2xl mx-auto">
               <ProductImageGallery 
                 images={product.images || [product.image]} 
-                title={product.title} 
+                title={product.title}
+                socialLinks={product.socialLinks}
               />
             </div>
           </div>
@@ -77,7 +78,6 @@ const ProductView = () => {
 
                 <AffiliateButtons 
                   affiliateLinks={product.affiliateLinks}
-                  socialLinks={product.socialLinks}
                   className="max-w-md"
                 />
 
