@@ -44,18 +44,18 @@ const AffiliateButtons = ({
   const availablePlatforms = platforms.filter((platform) => platform.link);
   const availableSocialPlatforms = [
     socialLinks?.telegram && {
-      name: "Join Telegram Community",
+      name: "Join Telegram",
       link: socialLinks.telegram,
       icon: MessageCircle,
       className:
-        'group relative overflow-hidden bg-white border-2 border-[#0088cc] text-[#0088cc] hover:text-white transition-colors duration-300 before:content-[""] before:absolute before:inset-0 before:bg-[#0088cc] before:transform before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:-z-10',
+        "bg-white text-[#0088cc] hover:bg-[#0088cc] hover:text-white border border-[#0088cc] transition-colors",
     },
     socialLinks?.facebook && {
-      name: "Join Facebook Group",
+      name: "Join Facebook",
       link: socialLinks.facebook,
       icon: Facebook,
       className:
-        'group relative overflow-hidden bg-white border-2 border-[#1877f2] text-[#1877f2] hover:text-white transition-colors duration-300 before:content-[""] before:absolute before:inset-0 before:bg-[#1877f2] before:transform before:scale-x-0 before:origin-right hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:-z-10',
+        "bg-white text-[#1877f2] hover:bg-[#1877f2] hover:text-white border border-[#1877f2] transition-colors",
     },
   ].filter(Boolean);
 
@@ -63,7 +63,7 @@ const AffiliateButtons = ({
     return null;
 
   return (
-    <div className={`space-y-6 ${className}`}>
+    <div className={`space-y-8 ${className}`}>
       {availablePlatforms.length > 0 && (
         <div className="space-y-3">
           <div className="grid gap-4">
@@ -89,31 +89,26 @@ const AffiliateButtons = ({
       )}
 
       {availableSocialPlatforms.length > 0 && (
-        <div className="space-y-3">
-          <h3 className="text-lg font-semibold text-gray-900">
-            Join Our Community
-          </h3>
-          <div className="grid gap-3">
-            {availableSocialPlatforms.map((platform) => (
-              <motion.a
-                key={platform.name}
-                href={platform.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="block"
+        <div className="flex gap-3 justify-center">
+          {availableSocialPlatforms.map((platform) => (
+            <motion.a
+              key={platform.name}
+              href={platform.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex-1 max-w-[180px]"
+            >
+              <Button
+                className={`w-full h-10 text-sm font-medium rounded-full ${platform.className}`}
+                variant="outline"
               >
-                <Button
-                  className={`w-full h-12 text-base font-semibold relative rounded-xl ${platform.className}`}
-                  variant="outline"
-                >
-                  <platform.icon className="h-5 w-5 mr-2 relative z-10" />
-                  <span className="relative z-10">{platform.name}</span>
-                </Button>
-              </motion.a>
-            ))}
-          </div>
+                <platform.icon className="h-4 w-4 mr-2" />
+                {platform.name}
+              </Button>
+            </motion.a>
+          ))}
         </div>
       )}
     </div>
