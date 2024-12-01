@@ -24,19 +24,19 @@ const AffiliateButtons = ({
     {
       name: "Amazon",
       link: affiliateLinks?.amazon,
-      color: "bg-gradient-to-r from-amazon-yellow to-amazon-orange",
+      color: "bg-gradient-to-br from-amazon-yellow via-amazon-orange to-[#ff8b3d]",
       icon: ShoppingCart,
     },
     {
       name: "eBay",
       link: affiliateLinks?.ebay,
-      color: "bg-gradient-to-r from-[#e53238] to-[#c92b31]",
+      color: "bg-gradient-to-br from-[#e53238] via-[#c92b31] to-[#ab242a]",
       icon: ShoppingCart,
     },
     {
       name: "AliExpress",
       link: affiliateLinks?.aliexpress,
-      color: "bg-gradient-to-r from-[#ff4747] to-[#e63e3e]",
+      color: "bg-gradient-to-br from-[#ff4747] via-[#e63e3e] to-[#cc3737]",
       icon: ShoppingCart,
     },
   ];
@@ -66,7 +66,7 @@ const AffiliateButtons = ({
     <div className={`space-y-6 ${className}`}>
       {availablePlatforms.length > 0 && (
         <div className="space-y-3">
-          <div className="grid gap-3">
+          <div className="grid gap-4">
             {availablePlatforms.map((platform) => (
               <motion.a
                 key={platform.name}
@@ -77,7 +77,7 @@ const AffiliateButtons = ({
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  className={`w-full ${platform.color} text-black font-bold h-14 text-lg shadow-lg hover:shadow-xl transition-shadow duration-300 hover:brightness-110`}
+                  className={`w-full ${platform.color} text-black font-bold h-14 text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5`}
                 >
                   <platform.icon className="h-6 w-6 mr-3" />
                   View on {platform.name}
@@ -105,7 +105,7 @@ const AffiliateButtons = ({
                 className="block"
               >
                 <Button
-                  className={`w-full h-12 text-base font-semibold relative ${platform.className}`}
+                  className={`w-full h-12 text-base font-semibold relative rounded-xl ${platform.className}`}
                   variant="outline"
                 >
                   <platform.icon className="h-5 w-5 mr-2 relative z-10" />
