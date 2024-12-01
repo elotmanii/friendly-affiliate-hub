@@ -53,13 +53,8 @@ export const products: Product[] = [
       amazon:
         "https://www.amazon.com/Apple-AirPods-Pro-Generation-Wireless/dp/B0DHWTDQD4/ref=sr_1_2?crid=1JTBGF8YWMRVY&dib=eyJ2IjoiMSJ9.kqdLt_HcIyfgDEd8_3pLcMrkWbuNtlBA7F1WEirAE4IssVQ3SAp-c-HCxFQGRB2g504NFEsqsaaOvhGRF7T_c-xdrqstDWY8kG11KUHCv6fJP4QlvCX2GsiBfeUTQtv3dGTRV4VE3isW41lS7DhoMmhqM8__UqrzaSaBspPjGah8u-q442wzwoC5VzGKjS0TqWgXT5AhbtzeNlhNXFABtOJxqK3Qw1HbOp20rCjXGOY.vu1HZfs9x18Prv-hPzIEhrIGRUiGS51nsd30ArbCS4k&dib_tag=se&keywords=airpods&qid=1732983296&sprefix=airpod%2Caps%2C260&sr=8-2&th=1",
       ebay: "https://www.ebay.fr/itm/186645736593?_skw=airpods&itmmeta=01JDYXXZFAY2MQF09G6PDSXSSH&hash=item2b74f3ec91:g:PkYAAOSwuFFmxhgp&itmprp=enc%3AAQAJAAAA4HoV3kP08IDx%2BKZ9MfhVJKkAJrci5p9GqkiZpmZRd%2Fs4tPlj2fByYCPUQF24pBscvTYj6Ioh4mbsQFBYUlpusl7m0%2BOHGzSzCdUiMCruOTl2O8rlUKmxBxjHdxixHPgfGYvtUhxuKwKXVpLR0b4DilebuutQI6XQAs%2BNj7DznUHxtl%2BiscKCeV8nU%2BqaMYp0bH5jzDTDSNN93kslJZA%2FCnEKtPTf43x0dTL7S9lMTa4kMXwNqPRtQGfWwAIwmvDbgwl2ijRVum078iPhzHP9N1rkilEui2y0P6pvlUDEJlta%7Ctkp%3ABFBM3Pf33e9k",
-
       aliexpress: "https://aliexpress.com/example",
-    },
-    socialLinks: {
-      telegram: "https://t.me/yourgroup",
-      facebook: "https://facebook.com/groups/yourgroup",
-    },
+    }
   },
   {
     id: 2,
@@ -105,11 +100,7 @@ export const products: Product[] = [
       amazon:
         "https://www.amazon.com/Apple-AirPods-Pro-Generation-Wireless/dp/B0DHWTDQD4/ref=sr_1_2?crid=1JTBGF8YWMRVY&dib=eyJ2IjoiMSJ9.kqdLt_HcIyfgDEd8_3pLcMrkWbuNtlBA7F1WEirAE4IssVQ3SAp-c-HCxFQGRB2g504NFEsqsaaOvhGRF7T_c-xdrqstDWY8kG11KUHCv6fJP4QlvCX2GsiBfeUTQtv3dGTRV4VE3isW41lS7DhoMmhqM8__UqrzaSaBspPjGah8u-q442wzwoC5VzGKjS0TqWgXT5AhbtzeNlhNXFABtOJxqK3Qw1HbOp20rCjXGOY.vu1HZfs9x18Prv-hPzIEhrIGRUiGS51nsd30ArbCS4k&dib_tag=se&keywords=airpods&qid=1732983296&sprefix=airpod%2Caps%2C260&sr=8-2&th=1",
       ebay: "https://www.ebay.fr/itm/186645736593?_skw=airpods&itmmeta=01JDYXXZFAY2MQF09G6PDSXSSH&hash=item2b74f3ec91:g:PkYAAOSwuFFmxhgp&itmprp=enc%3AAQAJAAAA4HoV3kP08IDx%2BKZ9MfhVJKkAJrci5p9GqkiZpmZRd%2Fs4tPlj2fByYCPUQF24pBscvTYj6Ioh4mbsQFBYUlpusl7m0%2BOHGzSzCdUiMCruOTl2O8rlUKmxBxjHdxixHPgfGYvtUhxuKwKXVpLR0b4DilebuutQI6XQAs%2BNj7DznUHxtl%2BiscKCeV8nU%2BqaMYp0bH5jzDTDSNN93kslJZA%2FCnEKtPTf43x0dTL7S9lMTa4kMXwNqPRtQGfWwAIwmvDbgwl2ijRVum078iPhzHP9N1rkilEui2y0P6pvlUDEJlta%7Ctkp%3ABFBM3Pf33e9k",
-    },
-    socialLinks: {
-      telegram: "https://t.me/yourgroup",
-      facebook: "https://facebook.com/groups/yourgroup",
-    },
+    }
   },
   {
     id: 3,
@@ -155,10 +146,6 @@ export const products: Product[] = [
       amazon:
         "https://www.amazon.com/Apple-AirPods-Pro-Generation-Wireless/dp/B0DHWTDQD4/ref=sr_1_2?crid=1JTBGF8YWMRVY&dib=eyJ2IjoiMSJ9.kqdLt_HcIyfgDEd8_3pLcMrkWbuNtlBA7F1WEirAE4IssVQ3SAp-c-HCxFQGRB2g504NFEsqsaaOvhGRF7T_c-xdrqstDWY8kG11KUHCv6fJP4QlvCX2GsiBfeUTQtv3dGTRV4VE3isW41lS7DhoMmhqM8__UqrzaSaBspPjGah8u-q442wzwoC5VzGKjS0TqWgXT5AhbtzeNlhNXFABtOJxqK3Qw1HbOp20rCjXGOY.vu1HZfs9x18Prv-hPzIEhrIGRUiGS51nsd30ArbCS4k&dib_tag=se&keywords=airpods&qid=1732983296&sprefix=airpod%2Caps%2C260&sr=8-2&th=1",
       ebay: "https://www.ebay.fr/itm/186645736593?_skw=airpods&itmmeta=01JDYXXZFAY2MQF09G6PDSXSSH&hash=item2b74f3ec91:g:PkYAAOSwuFFmxhgp&itmprp=enc%3AAQAJAAAA4HoV3kP08IDx%2BKZ9MfhVJKkAJrci5p9GqkiZpmZRd%2Fs4tPlj2fByYCPUQF24pBscvTYj6Ioh4mbsQFBYUlpusl7m0%2BOHGzSzCdUiMCruOTl2O8rlUKmxBxjHdxixHPgfGYvtUhxuKwKXVpLR0b4DilebuutQI6XQAs%2BNj7DznUHxtl%2BiscKCeV8nU%2BqaMYp0bH5jzDTDSNN93kslJZA%2FCnEKtPTf43x0dTL7S9lMTa4kMXwNqPRtQGfWwAIwmvDbgwl2ijRVum078iPhzHP9N1rkilEui2y0P6pvlUDEJlta%7Ctkp%3ABFBM3Pf33e9k",
-    },
-    socialLinks: {
-      telegram: "https://t.me/yourgroup",
-      facebook: "https://facebook.com/groups/yourgroup",
-    },
-  },
+    }
+  }
 ];
