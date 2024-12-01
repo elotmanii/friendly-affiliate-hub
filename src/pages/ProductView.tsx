@@ -17,6 +17,12 @@ const ProductView = () => {
 
   const product = products.find((p) => p.id === Number(id));
 
+  // Define social links directly in the component
+  const socialLinks = {
+    telegram: "https://t.me/your_telegram_community",
+    facebook: "https://facebook.com/groups/your_facebook_group",
+  };
+
   if (!product) {
     return (
       <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -56,7 +62,7 @@ const ProductView = () => {
               <ProductImageGallery
                 images={product.images || [product.image]}
                 title={product.title}
-                socialLinks={product.socialLinks}
+                socialLinks={socialLinks}
               />
             </div>
           </div>
@@ -71,7 +77,7 @@ const ProductView = () => {
 
                 <AffiliateButtons
                   affiliateLinks={product.affiliateLinks}
-                  className="max-w-md"
+                  socialLinks={socialLinks}
                 />
 
                 {product.description && (
@@ -117,7 +123,7 @@ const ProductView = () => {
               <ProductImageGallery
                 images={product.images || [product.image]}
                 title={product.title}
-                socialLinks={product.socialLinks}
+                socialLinks={socialLinks}
               />
             </div>
 
@@ -130,7 +136,7 @@ const ProductView = () => {
 
               <AffiliateButtons
                 affiliateLinks={product.affiliateLinks}
-                socialLinks={product.socialLinks}
+                socialLinks={socialLinks}
               />
 
               {product.description && (
