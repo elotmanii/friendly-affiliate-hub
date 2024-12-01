@@ -48,7 +48,7 @@ const ProductView = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed right-6 top-6 z-50 bg-white/80 hover:bg-white shadow-md rounded-full"
+        className="fixed right-4 top-4 z-50 bg-white/80 hover:bg-white shadow-md rounded-full lg:right-6 lg:top-6"
         onClick={() => navigate("/")}
       >
         <X className="h-5 w-5" />
@@ -62,7 +62,6 @@ const ProductView = () => {
               <ProductImageGallery
                 images={product.images || [product.image]}
                 title={product.title}
-                socialLinks={socialLinks}
               />
             </div>
           </div>
@@ -114,54 +113,60 @@ const ProductView = () => {
         </div>
       </div>
 
-      {/* Mobile Layout */}
+      {/* Enhanced Mobile Layout */}
       <div className="lg:hidden h-full overflow-y-auto bg-white">
         <ScrollArea className="h-full">
           <div className="space-y-6 pb-20">
-            {/* Product Images */}
-            <div className="relative">
-              <ProductImageGallery
-                images={product.images || [product.image]}
-                title={product.title}
-                socialLinks={socialLinks}
-              />
+            {/* Mobile Product Images with Gradient Overlay */}
+            <div className="relative bg-gradient-to-b from-gray-50 to-white pt-12">
+              <div className="px-4">
+                <ProductImageGallery
+                  images={product.images || [product.image]}
+                  title={product.title}
+                />
+              </div>
             </div>
 
-            {/* Product Info */}
+            {/* Mobile Product Info with Card-like Design */}
             <div className="px-4 space-y-6">
-              <ProductHeader
-                product={product}
-                discountedPrice={discountedPrice}
-              />
+              <div className="bg-white rounded-t-3xl -mt-6 shadow-sm border border-gray-100 p-6 space-y-6">
+                <ProductHeader
+                  product={product}
+                  discountedPrice={discountedPrice}
+                />
 
-              <AffiliateButtons
-                affiliateLinks={product.affiliateLinks}
-                socialLinks={socialLinks}
-              />
-
-              {product.description && (
-                <div className="prose prose-sm">
-                  <h2 className="text-xl font-semibold text-amazon-dark">
-                    Product Description
-                  </h2>
-                  <p className="text-gray-600">{product.description}</p>
+                <div className="py-4">
+                  <AffiliateButtons
+                    affiliateLinks={product.affiliateLinks}
+                    socialLinks={socialLinks}
+                    className="space-y-4"
+                  />
                 </div>
-              )}
+
+                {product.description && (
+                  <div className="prose prose-sm">
+                    <h2 className="text-xl font-semibold text-amazon-dark">
+                      Product Description
+                    </h2>
+                    <p className="text-gray-600">{product.description}</p>
+                  </div>
+                )}
+              </div>
 
               {product.features && (
-                <div className="pt-6 border-t border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                   <ProductFeatures features={product.features} />
                 </div>
               )}
 
               {product.specs && (
-                <div className="pt-6 border-t border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                   <ProductSpecs specs={product.specs} />
                 </div>
               )}
 
               {product.reviews && product.reviews.length > 0 && (
-                <div className="pt-6 border-t border-gray-100">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                   <ProductReviews reviews={product.reviews} />
                 </div>
               )}
