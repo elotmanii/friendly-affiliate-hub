@@ -48,9 +48,9 @@ const ProductView = () => {
         <X className="h-5 w-5" />
       </Button>
 
-      <div className="h-screen max-h-screen overflow-hidden">
+      {/* Desktop Layout */}
+      <div className="hidden lg:block h-screen max-h-screen overflow-hidden">
         <div className="h-full grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] bg-white">
-          {/* Left Column - Product Images */}
           <div className="relative h-full bg-gray-50 p-8 overflow-hidden">
             <div className="h-full max-w-2xl mx-auto">
               <ProductImageGallery
@@ -61,7 +61,6 @@ const ProductView = () => {
             </div>
           </div>
 
-          {/* Right Column - Product Details */}
           <ScrollArea className="h-full relative">
             <div className="px-8 py-12 max-w-3xl">
               <div className="space-y-8">
@@ -107,6 +106,62 @@ const ProductView = () => {
             </div>
           </ScrollArea>
         </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="lg:hidden h-full overflow-y-auto bg-white">
+        <ScrollArea className="h-full">
+          <div className="space-y-6 pb-20">
+            {/* Product Images */}
+            <div className="relative">
+              <ProductImageGallery
+                images={product.images || [product.image]}
+                title={product.title}
+                socialLinks={product.socialLinks}
+              />
+            </div>
+
+            {/* Product Info */}
+            <div className="px-4 space-y-6">
+              <ProductHeader
+                product={product}
+                discountedPrice={discountedPrice}
+              />
+
+              <AffiliateButtons
+                affiliateLinks={product.affiliateLinks}
+                socialLinks={product.socialLinks}
+              />
+
+              {product.description && (
+                <div className="prose prose-sm">
+                  <h2 className="text-xl font-semibold text-amazon-dark">
+                    Product Description
+                  </h2>
+                  <p className="text-gray-600">{product.description}</p>
+                </div>
+              )}
+
+              {product.features && (
+                <div className="pt-6 border-t border-gray-100">
+                  <ProductFeatures features={product.features} />
+                </div>
+              )}
+
+              {product.specs && (
+                <div className="pt-6 border-t border-gray-100">
+                  <ProductSpecs specs={product.specs} />
+                </div>
+              )}
+
+              {product.reviews && product.reviews.length > 0 && (
+                <div className="pt-6 border-t border-gray-100">
+                  <ProductReviews reviews={product.reviews} />
+                </div>
+              )}
+            </div>
+          </div>
+        </ScrollArea>
       </div>
     </motion.div>
   );
