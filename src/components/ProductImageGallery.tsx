@@ -1,18 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Facebook, MessageCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface ProductImageGalleryProps {
   images: string[];
   title: string;
-  socialLinks?: {
-    telegram?: string;
-    facebook?: string;
-  };
 }
 
-const ProductImageGallery = ({ images, title, socialLinks }: ProductImageGalleryProps) => {
+const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
@@ -58,31 +54,6 @@ const ProductImageGallery = ({ images, title, socialLinks }: ProductImageGallery
               <ChevronRight className="h-4 w-4" />
             </Button>
           </>
-        )}
-
-        {(socialLinks?.telegram || socialLinks?.facebook) && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3">
-            {socialLinks.telegram && (
-              <a
-                href={socialLinks.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#0088cc] hover:bg-[#0099dd] text-white p-2 rounded-full transition-colors duration-200"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
-            )}
-            {socialLinks.facebook && (
-              <a
-                href={socialLinks.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#1877f2] hover:bg-[#1884ff] text-white p-2 rounded-full transition-colors duration-200"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-            )}
-          </div>
         )}
       </div>
 
