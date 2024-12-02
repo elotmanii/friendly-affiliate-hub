@@ -115,10 +115,10 @@ const ProductView = () => {
       {/* Enhanced Mobile Layout */}
       <div className="lg:hidden h-full overflow-y-auto bg-white">
         <ScrollArea className="h-full">
-          <div className="space-y-6 pb-20">
-            {/* Mobile Product Images with Enhanced Gradient Overlay */}
+          <div className="flex flex-col min-h-screen">
+            {/* Mobile Product Images */}
             <div className="relative bg-gradient-to-b from-gray-50 to-white pt-12">
-              <div className="container-padding">
+              <div className="container-padding max-w-2xl mx-auto">
                 <ProductImageGallery
                   images={product.images || [product.image]}
                   title={product.title}
@@ -126,51 +126,53 @@ const ProductView = () => {
               </div>
             </div>
 
-            {/* Mobile Product Info with Enhanced Card Design */}
-            <div className="container-padding space-y-8">
-              <div className="bg-white rounded-t-3xl -mt-6 shadow-sm border border-gray-100 p-6 space-y-6">
-                <ProductHeader
-                  product={product}
-                  discountedPrice={discountedPrice}
-                />
-
-                <div className="py-4">
-                  <AffiliateButtons
-                    affiliateLinks={product.affiliateLinks}
-                    socialLinks={socialLinks}
-                    className="space-y-4"
+            {/* Mobile Product Info */}
+            <div className="flex-1 container-padding max-w-2xl mx-auto">
+              <div className="bg-white rounded-t-3xl -mt-6 shadow-sm border border-gray-100">
+                <div className="p-6 space-y-8">
+                  <ProductHeader
+                    product={product}
+                    discountedPrice={discountedPrice}
                   />
+
+                  <div className="py-4">
+                    <AffiliateButtons
+                      affiliateLinks={product.affiliateLinks}
+                      socialLinks={socialLinks}
+                      className="space-y-4"
+                    />
+                  </div>
+
+                  {product.description && (
+                    <div className="prose prose-sm max-w-none">
+                      <h2 className="text-xl font-semibold text-amazon-dark">
+                        Product Description
+                      </h2>
+                      <p className="text-gray-600 leading-relaxed">
+                        {product.description}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                {product.description && (
-                  <div className="prose prose-sm max-w-none">
-                    <h2 className="text-xl font-semibold text-amazon-dark">
-                      Product Description
-                    </h2>
-                    <p className="text-gray-600 leading-relaxed">
-                      {product.description}
-                    </p>
+                {product.features && (
+                  <div className="bg-white p-6 border-t border-gray-100">
+                    <ProductFeatures features={product.features} />
+                  </div>
+                )}
+
+                {product.specs && (
+                  <div className="bg-white p-6 border-t border-gray-100">
+                    <ProductSpecs specs={product.specs} />
+                  </div>
+                )}
+
+                {product.reviews && product.reviews.length > 0 && (
+                  <div className="bg-white p-6 border-t border-gray-100">
+                    <ProductReviews reviews={product.reviews} />
                   </div>
                 )}
               </div>
-
-              {product.features && (
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                  <ProductFeatures features={product.features} />
-                </div>
-              )}
-
-              {product.specs && (
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                  <ProductSpecs specs={product.specs} />
-                </div>
-              )}
-
-              {product.reviews && product.reviews.length > 0 && (
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                  <ProductReviews reviews={product.reviews} />
-                </div>
-              )}
             </div>
           </div>
         </ScrollArea>
