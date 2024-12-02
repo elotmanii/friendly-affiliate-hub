@@ -17,7 +17,6 @@ const ProductView = () => {
 
   const product = products.find((p) => p.id === Number(id));
 
-  // Define social links directly in the component
   const socialLinks = {
     telegram: "https://t.me/your_telegram_community",
     facebook: "https://facebook.com/groups/your_facebook_group",
@@ -117,9 +116,9 @@ const ProductView = () => {
       <div className="lg:hidden h-full overflow-y-auto bg-white">
         <ScrollArea className="h-full">
           <div className="space-y-6 pb-20">
-            {/* Mobile Product Images with Gradient Overlay */}
+            {/* Mobile Product Images with Enhanced Gradient Overlay */}
             <div className="relative bg-gradient-to-b from-gray-50 to-white pt-12">
-              <div className="px-4">
+              <div className="container-padding">
                 <ProductImageGallery
                   images={product.images || [product.image]}
                   title={product.title}
@@ -127,8 +126,8 @@ const ProductView = () => {
               </div>
             </div>
 
-            {/* Mobile Product Info with Card-like Design */}
-            <div className="px-4 space-y-6">
+            {/* Mobile Product Info with Enhanced Card Design */}
+            <div className="container-padding space-y-8">
               <div className="bg-white rounded-t-3xl -mt-6 shadow-sm border border-gray-100 p-6 space-y-6">
                 <ProductHeader
                   product={product}
@@ -144,11 +143,13 @@ const ProductView = () => {
                 </div>
 
                 {product.description && (
-                  <div className="prose prose-sm">
+                  <div className="prose prose-sm max-w-none">
                     <h2 className="text-xl font-semibold text-amazon-dark">
                       Product Description
                     </h2>
-                    <p className="text-gray-600">{product.description}</p>
+                    <p className="text-gray-600 leading-relaxed">
+                      {product.description}
+                    </p>
                   </div>
                 )}
               </div>
