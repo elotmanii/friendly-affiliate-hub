@@ -113,8 +113,8 @@ const ProductView = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden h-full overflow-y-auto bg-white">
-        <ScrollArea className="h-full flex flex-col items-center">
+      <div className="lg:hidden h-full w-full overflow-y-auto bg-white">
+        <ScrollArea className="h-full">
           <div className="w-full max-w-[400px] mx-auto">
             {/* Product Images */}
             <div className="bg-gradient-to-b from-gray-50 to-white pt-12">
