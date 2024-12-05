@@ -115,10 +115,10 @@ const ProductView = () => {
       {/* Mobile Layout */}
       <div className="lg:hidden h-full w-full overflow-y-auto bg-white">
         <ScrollArea className="h-full">
-          <div className="w-full max-w-[400px] mx-auto">
+          <div className="pb-8">
             {/* Product Images */}
             <div className="bg-gradient-to-b from-gray-50 to-white pt-12">
-              <div className="px-4">
+              <div className="px-4 max-w-md mx-auto">
                 <ProductImageGallery
                   images={product.images || [product.image]}
                   title={product.title}
@@ -127,7 +127,7 @@ const ProductView = () => {
             </div>
 
             {/* Product Info */}
-            <div className="px-4 -mt-6">
+            <div className="px-4 -mt-6 max-w-md mx-auto">
               <div className="bg-white rounded-t-3xl shadow-lg border border-gray-100">
                 {/* Header Section */}
                 <div className="p-6 space-y-6">
@@ -180,9 +180,6 @@ const ProductView = () => {
                 )}
               </div>
             </div>
-
-            {/* Bottom Spacing */}
-            <div className="h-8" />
           </div>
         </ScrollArea>
       </div>
