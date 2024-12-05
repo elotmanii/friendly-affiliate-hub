@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductImageGallery from "@/components/ProductImageGallery";
 import ProductReviews from "@/components/ProductReviews";
@@ -50,7 +50,7 @@ const ProductView = () => {
         className="fixed right-4 top-4 z-50 bg-white/80 hover:bg-white shadow-md rounded-full lg:right-6 lg:top-6"
         onClick={() => navigate("/")}
       >
-        <X className="h-5 w-5" />
+        <Home className="h-5 w-5" />
       </Button>
 
       {/* Desktop Layout */}
