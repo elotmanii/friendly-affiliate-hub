@@ -9,10 +9,12 @@ import HeroPreviewCards from "../components/HeroPreviewCards";
 import FeaturedProducts from "../components/FeaturedProducts";
 import { filterProducts } from "../utils/search";
 import { Product } from "../types/product";
+import { toast } from "sonner";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const productsRef = useRef<HTMLElement>(null);
+  const trustSectionRef = useRef<HTMLElement>(null);
 
   const featuredProducts: Product[] = [
     {
@@ -57,6 +59,12 @@ const Index = () => {
 
   const scrollToProducts = () => {
     productsRef.current?.scrollIntoView({ behavior: "smooth" });
+    toast.success("Showing our featured products!");
+  };
+
+  const scrollToTrustSection = () => {
+    trustSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    toast.info("Learn why customers trust us!");
   };
 
   return (
@@ -102,6 +110,7 @@ const Index = () => {
                   variant="outline"
                   size="lg"
                   className="border-2 text-white border-white/20 hover:bg-white/10"
+                  onClick={scrollToTrustSection}
                 >
                   Learn More
                 </Button>
@@ -142,10 +151,12 @@ const Index = () => {
       </section>
 
       {/* Featured Products Section */}
-      <FeaturedProducts products={filteredProducts} />
+      <section ref={productsRef}>
+        <FeaturedProducts products={filteredProducts} />
+      </section>
 
       {/* Trust Section */}
-      <section className="py-16 bg-background">
+      <section ref={trustSectionRef} className="py-16 bg-background">
         <div className="container-padding">
           <h2 className="section-title text-center mb-12">Why Shop With Us</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
