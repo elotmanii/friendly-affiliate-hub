@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "./ui/carousel";
 import ProductCard from './ProductCard';
 import CategoryFilters from './CategoryFilters';
+import ScrollHint from './ScrollHint';
 import { Product } from '../types/product';
 
 interface FeaturedProductsProps {
@@ -37,7 +38,7 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
             onCategoryChange={setSelectedCategory}
           />
 
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto relative">
             <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent>
                 {filteredProducts.map((product) => (
@@ -51,6 +52,7 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
                 <CarouselNext />
               </div>
             </Carousel>
+            <ScrollHint />
           </div>
         </motion.div>
       </div>

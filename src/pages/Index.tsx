@@ -9,7 +9,6 @@ import HeroPreviewCards from "../components/HeroPreviewCards";
 import FeaturedProducts from "../components/FeaturedProducts";
 import { filterProducts } from "../utils/search";
 import { Product } from "../types/product";
-import { toast } from "sonner";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -59,12 +58,10 @@ const Index = () => {
 
   const scrollToProducts = () => {
     productsRef.current?.scrollIntoView({ behavior: "smooth" });
-    toast.success("Showing our featured products!");
   };
 
   const scrollToTrustSection = () => {
     trustSectionRef.current?.scrollIntoView({ behavior: "smooth" });
-    toast.info("Learn why customers trust us!");
   };
 
   return (
