@@ -113,76 +113,97 @@ const ProductView = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden h-full w-full overflow-y-auto bg-white">
-        <ScrollArea className="h-full">
-          <div className="pb-8">
-            {/* Product Images */}
-            <div className="bg-gradient-to-b from-gray-50 to-white pt-12">
-              <div className="px-4 max-w-md mx-auto">
-                <ProductImageGallery
-                  images={product.images || [product.image]}
-                  title={product.title}
+      <ScrollArea className="lg:hidden h-full">
+        <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pb-20">
+          {/* Product Images */}
+          <div className="pt-16 px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ProductImageGallery
+                images={product.images || [product.image]}
+                title={product.title}
+              />
+            </motion.div>
+          </div>
+
+          {/* Product Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="px-4 mt-6"
+          >
+            <div className="bg-white rounded-t-3xl shadow-lg">
+              <div className="p-6 space-y-6">
+                <ProductHeader
+                  product={product}
+                  discountedPrice={discountedPrice}
                 />
-              </div>
-            </div>
 
-            {/* Product Info */}
-            <div className="px-4 -mt-6 max-w-md mx-auto">
-              <div className="bg-white rounded-t-3xl shadow-lg border border-gray-100">
-                {/* Header Section */}
-                <div className="p-6 space-y-6">
-                  <ProductHeader
-                    product={product}
-                    discountedPrice={discountedPrice}
+                <div className="py-4">
+                  <AffiliateButtons
+                    affiliateLinks={product.affiliateLinks}
+                    socialLinks={socialLinks}
+                    className="space-y-3"
                   />
-
-                  {/* Affiliate Buttons */}
-                  <div className="py-2">
-                    <AffiliateButtons
-                      affiliateLinks={product.affiliateLinks}
-                      socialLinks={socialLinks}
-                      className="space-y-4"
-                    />
-                  </div>
-
-                  {/* Description */}
-                  {product.description && (
-                    <div className="prose prose-sm max-w-none pt-4">
-                      <h2 className="text-xl font-semibold text-amazon-dark mb-3">
-                        Product Description
-                      </h2>
-                      <p className="text-gray-600 leading-relaxed">
-                        {product.description}
-                      </p>
-                    </div>
-                  )}
                 </div>
 
-                {/* Features Section */}
-                {product.features && (
-                  <div className="px-6 py-8 border-t border-gray-100 bg-gray-50/50">
-                    <ProductFeatures features={product.features} />
-                  </div>
-                )}
-
-                {/* Specs Section */}
-                {product.specs && (
-                  <div className="px-6 py-8 border-t border-gray-100">
-                    <ProductSpecs specs={product.specs} />
-                  </div>
-                )}
-
-                {/* Reviews Section */}
-                {product.reviews && product.reviews.length > 0 && (
-                  <div className="px-6 py-8 border-t border-gray-100 bg-gray-50/50">
-                    <ProductReviews reviews={product.reviews} />
-                  </div>
+                {product.description && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="prose prose-sm max-w-none"
+                  >
+                    <h2 className="text-xl font-semibold text-amazon-dark mb-3">
+                      Product Description
+                    </h2>
+                    <p className="text-gray-600 leading-relaxed">
+                      {product.description}
+                    </p>
+                  </motion.div>
                 )}
               </div>
+
+              {product.features && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="px-6 py-8 border-t border-gray-100 bg-gray-50/50"
+                >
+                  <ProductFeatures features={product.features} />
+                </motion.div>
+              )}
+
+              {product.specs && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="px-6 py-8 border-t border-gray-100"
+                >
+                  <ProductSpecs specs={product.specs} />
+                </motion.div>
+              )}
+
+              {product.reviews && product.reviews.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="px-6 py-8 border-t border-gray-100 bg-gray-50/50"
+                >
+                  <ProductReviews reviews={product.reviews} />
+                </motion.div>
+              )}
             </div>
-          </div>
-        </ScrollArea>
-      </div>
+          </motion.div>
+        </div>
+      </ScrollArea>
     </motion.div>
   );
 };
