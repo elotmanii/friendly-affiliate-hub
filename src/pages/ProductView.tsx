@@ -24,10 +24,12 @@ const ProductView = () => {
 
   if (!product) {
     return (
-      <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
+      <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm mx-auto">
           <h2 className="text-xl font-bold mb-4">Product Not Found</h2>
-          <Button onClick={() => navigate("/")}>Return to Home</Button>
+          <Button onClick={() => navigate("/")} className="w-full">
+            Return to Home
+          </Button>
         </div>
       </div>
     );
@@ -47,7 +49,7 @@ const ProductView = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="fixed right-4 top-4 z-50 bg-white/80 hover:bg-white shadow-md rounded-full lg:right-6 lg:top-6"
+        className="fixed right-2 top-2 z-50 bg-white/80 hover:bg-white shadow-md rounded-full lg:right-6 lg:top-6"
         onClick={() => navigate("/")}
       >
         <Home className="h-5 w-5" />
@@ -116,7 +118,7 @@ const ProductView = () => {
       <ScrollArea className="lg:hidden h-full">
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pb-20">
           {/* Product Images */}
-          <div className="pt-16 px-4">
+          <div className="pt-12 px-2 sm:px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -134,10 +136,10 @@ const ProductView = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="px-4 mt-6"
+            className="px-2 sm:px-4 mt-6"
           >
             <div className="bg-white rounded-t-3xl shadow-lg">
-              <div className="p-6 space-y-6">
+              <div className="p-4 sm:p-6 space-y-6">
                 <ProductHeader
                   product={product}
                   discountedPrice={discountedPrice}
@@ -147,7 +149,7 @@ const ProductView = () => {
                   <AffiliateButtons
                     affiliateLinks={product.affiliateLinks}
                     socialLinks={socialLinks}
-                    className="space-y-3"
+                    className="space-y-2"
                   />
                 </div>
 
@@ -158,10 +160,10 @@ const ProductView = () => {
                     transition={{ delay: 0.3 }}
                     className="prose prose-sm max-w-none"
                   >
-                    <h2 className="text-xl font-semibold text-amazon-dark mb-3">
+                    <h2 className="text-lg sm:text-xl font-semibold text-amazon-dark mb-3">
                       Product Description
                     </h2>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                       {product.description}
                     </p>
                   </motion.div>
@@ -173,7 +175,7 @@ const ProductView = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="px-6 py-8 border-t border-gray-100 bg-gray-50/50"
+                  className="px-4 sm:px-6 py-6 border-t border-gray-100 bg-gray-50/50"
                 >
                   <ProductFeatures features={product.features} />
                 </motion.div>
@@ -184,7 +186,7 @@ const ProductView = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="px-6 py-8 border-t border-gray-100"
+                  className="px-4 sm:px-6 py-6 border-t border-gray-100"
                 >
                   <ProductSpecs specs={product.specs} />
                 </motion.div>
@@ -195,7 +197,7 @@ const ProductView = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="px-6 py-8 border-t border-gray-100 bg-gray-50/50"
+                  className="px-4 sm:px-6 py-6 border-t border-gray-100 bg-gray-50/50"
                 >
                   <ProductReviews reviews={product.reviews} />
                 </motion.div>
