@@ -119,56 +119,80 @@ const ProductView = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="lg:hidden min-h-screen bg-gradient-to-b from-purple-50 via-white to-purple-50">
         <ScrollArea className="h-screen">
-          <div className="pb-8 px-4 pt-16 max-w-2xl mx-auto">
-            <div className="space-y-8">
-              <ProductImageGallery
-                images={product.images || [product.image]}
-                title={product.title}
-              />
+          <div className="pb-20 pt-16 max-w-xl mx-auto">
+            <div className="space-y-6 px-4">
+              <div className="bg-white rounded-2xl shadow-lg p-4 animate-fade-up">
+                <ProductImageGallery
+                  images={product.images || [product.image]}
+                  title={product.title}
+                />
+              </div>
 
-              <div className="space-y-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-2xl shadow-lg p-6 space-y-6"
+              >
                 <ProductHeader
                   product={product}
                   discountedPrice={discountedPrice}
                 />
 
-                <AffiliateButtons
-                  affiliateLinks={product.affiliateLinks}
-                  socialLinks={socialLinks}
-                  className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100"
-                />
+                <div className="border-t border-gray-100 pt-6">
+                  <AffiliateButtons
+                    affiliateLinks={product.affiliateLinks}
+                    socialLinks={socialLinks}
+                    className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl shadow-sm"
+                  />
+                </div>
+              </motion.div>
 
-                {product.description && (
-                  <div className="prose prose-sm max-w-none bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-                    <h2 className="text-xl font-semibold text-amazon-dark mb-3">
-                      Product Description
-                    </h2>
-                    <p className="text-gray-600 leading-relaxed">
-                      {product.description}
-                    </p>
-                  </div>
-                )}
+              {product.description && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl shadow-lg p-6"
+                >
+                  <h2 className="text-xl font-semibold text-amazon-dark mb-4">
+                    About This Product
+                  </h2>
+                  <p className="text-gray-600 leading-relaxed">
+                    {product.description}
+                  </p>
+                </motion.div>
+              )}
 
-                {product.features && (
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-                    <ProductFeatures features={product.features} />
-                  </div>
-                )}
+              {product.features && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl shadow-lg p-6"
+                >
+                  <ProductFeatures features={product.features} />
+                </motion.div>
+              )}
 
-                {product.specs && (
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-                    <ProductSpecs specs={product.specs} />
-                  </div>
-                )}
+              {product.specs && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl shadow-lg p-6"
+                >
+                  <ProductSpecs specs={product.specs} />
+                </motion.div>
+              )}
 
-                {product.reviews && product.reviews.length > 0 && (
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-                    <ProductReviews reviews={product.reviews} />
-                  </div>
-                )}
-              </div>
+              {product.reviews && product.reviews.length > 0 && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white rounded-2xl shadow-lg p-6"
+                >
+                  <ProductReviews reviews={product.reviews} />
+                </motion.div>
+              )}
             </div>
           </div>
         </ScrollArea>
