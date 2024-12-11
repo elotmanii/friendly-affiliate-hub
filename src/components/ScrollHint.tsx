@@ -6,14 +6,35 @@ const ScrollHint = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    // Check if user has swiped before
+    const hasSwipedBefore = localStorage.getItem('hasSwipedProducts');
+    if (hasSwipedBefore) {
+      setIsVisible(false);
+    }
+
     const handleScroll = () => {
       if (isVisible) {
         setIsVisible(false);
+        // Store that user has swiped
+        localStorage.setItem('hasSwipedProducts', 'true');
+      }
+    };
+
+    const handleTouch = () => {
+      if (isVisible) {
+        setIsVisible(false);
+        // Store that user has swiped
+        localStorage.setItem('hasSwipedProducts', 'true');
       }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('touchmove', handleTouch);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleTouch);
+    };
   }, [isVisible]);
 
   return (
@@ -25,7 +46,7 @@ const ScrollHint = () => {
           exit={{ opacity: 0 }}
           className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-gray-500 sm:hidden"
         >
-          <span className="text-sm">Scroll</span>
+          <span className="text-sm font-medium">Swipe</span>
           <ChevronRight className="w-4 h-4 animate-bounce" />
         </motion.div>
       )}
