@@ -25,9 +25,14 @@ const ProductView = () => {
   if (!product) {
     return (
       <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-4">Product Not Found</h2>
-          <Button onClick={() => navigate("/")}>Return to Home</Button>
+        <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+          <h2 className="text-2xl font-bold mb-4 text-amazon-dark">Product Not Found</h2>
+          <Button 
+            onClick={() => navigate("/")}
+            className="bg-amazon-orange hover:bg-amazon-yellow text-black font-semibold"
+          >
+            Return to Home
+          </Button>
         </div>
       </div>
     );
@@ -42,7 +47,7 @@ const ProductView = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-background z-50 overflow-hidden"
+      className="min-h-screen bg-gradient-to-b from-gray-50 to-white"
     >
       <Button
         variant="ghost"
@@ -54,10 +59,10 @@ const ProductView = () => {
       </Button>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:block h-screen max-h-screen overflow-hidden">
-        <div className="h-full grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] bg-white">
-          <div className="relative h-full bg-gray-50 p-8 overflow-hidden">
-            <div className="h-full max-w-2xl mx-auto">
+      <div className="hidden lg:block min-h-screen">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 max-w-[2000px] mx-auto">
+          <div className="relative min-h-screen bg-gradient-to-b from-gray-50 to-white p-8">
+            <div className="sticky top-8 max-w-2xl mx-auto">
               <ProductImageGallery
                 images={product.images || [product.image]}
                 title={product.title}
@@ -65,9 +70,9 @@ const ProductView = () => {
             </div>
           </div>
 
-          <ScrollArea className="h-full relative">
+          <ScrollArea className="h-screen">
             <div className="px-8 py-12 max-w-3xl">
-              <div className="space-y-8">
+              <div className="space-y-10">
                 <ProductHeader
                   product={product}
                   discountedPrice={discountedPrice}
@@ -76,11 +81,12 @@ const ProductView = () => {
                 <AffiliateButtons
                   affiliateLinks={product.affiliateLinks}
                   socialLinks={socialLinks}
+                  className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100"
                 />
 
                 {product.description && (
-                  <div className="prose prose-lg max-w-none">
-                    <h2 className="text-2xl font-semibold text-amazon-dark">
+                  <div className="prose prose-lg max-w-none bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                    <h2 className="text-2xl font-semibold text-amazon-dark mb-4">
                       Product Description
                     </h2>
                     <p className="text-gray-600 leading-relaxed">
@@ -90,19 +96,19 @@ const ProductView = () => {
                 )}
 
                 {product.features && (
-                  <div className="pt-8 border-t border-gray-100">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                     <ProductFeatures features={product.features} />
                   </div>
                 )}
 
                 {product.specs && (
-                  <div className="pt-8 border-t border-gray-100">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                     <ProductSpecs specs={product.specs} />
                   </div>
                 )}
 
                 {product.reviews && product.reviews.length > 0 && (
-                  <div className="pt-8 border-t border-gray-100">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                     <ProductReviews reviews={product.reviews} />
                   </div>
                 )}
@@ -113,68 +119,52 @@ const ProductView = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="lg:hidden h-full w-full overflow-y-auto bg-white">
-        <ScrollArea className="h-full">
-          <div className="pb-8">
-            {/* Product Images */}
-            <div className="bg-gradient-to-b from-gray-50 to-white pt-12">
-              <div className="px-4 max-w-md mx-auto">
-                <ProductImageGallery
-                  images={product.images || [product.image]}
-                  title={product.title}
+      <div className="lg:hidden min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <ScrollArea className="h-screen">
+          <div className="pb-8 px-4 pt-16 max-w-2xl mx-auto">
+            <div className="space-y-8">
+              <ProductImageGallery
+                images={product.images || [product.image]}
+                title={product.title}
+              />
+
+              <div className="space-y-8">
+                <ProductHeader
+                  product={product}
+                  discountedPrice={discountedPrice}
                 />
-              </div>
-            </div>
 
-            {/* Product Info */}
-            <div className="px-4 -mt-6 max-w-md mx-auto">
-              <div className="bg-white rounded-t-3xl shadow-lg border border-gray-100">
-                {/* Header Section */}
-                <div className="p-6 space-y-6">
-                  <ProductHeader
-                    product={product}
-                    discountedPrice={discountedPrice}
-                  />
+                <AffiliateButtons
+                  affiliateLinks={product.affiliateLinks}
+                  socialLinks={socialLinks}
+                  className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100"
+                />
 
-                  {/* Affiliate Buttons */}
-                  <div className="py-2">
-                    <AffiliateButtons
-                      affiliateLinks={product.affiliateLinks}
-                      socialLinks={socialLinks}
-                      className="space-y-4"
-                    />
+                {product.description && (
+                  <div className="prose prose-sm max-w-none bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                    <h2 className="text-xl font-semibold text-amazon-dark mb-3">
+                      Product Description
+                    </h2>
+                    <p className="text-gray-600 leading-relaxed">
+                      {product.description}
+                    </p>
                   </div>
+                )}
 
-                  {/* Description */}
-                  {product.description && (
-                    <div className="prose prose-sm max-w-none pt-4">
-                      <h2 className="text-xl font-semibold text-amazon-dark mb-3">
-                        Product Description
-                      </h2>
-                      <p className="text-gray-600 leading-relaxed">
-                        {product.description}
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Features Section */}
                 {product.features && (
-                  <div className="px-6 py-8 border-t border-gray-100 bg-gray-50/50">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                     <ProductFeatures features={product.features} />
                   </div>
                 )}
 
-                {/* Specs Section */}
                 {product.specs && (
-                  <div className="px-6 py-8 border-t border-gray-100">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                     <ProductSpecs specs={product.specs} />
                   </div>
                 )}
 
-                {/* Reviews Section */}
                 {product.reviews && product.reviews.length > 0 && (
-                  <div className="px-6 py-8 border-t border-gray-100 bg-gray-50/50">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                     <ProductReviews reviews={product.reviews} />
                   </div>
                 )}
