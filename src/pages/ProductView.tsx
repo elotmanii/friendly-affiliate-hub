@@ -2,13 +2,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ProductImageGallery from "@/components/ProductImageGallery";
 import ProductReviews from "@/components/ProductReviews";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import AffiliateButtons from "@/components/AffiliateButtons";
 import ProductHeader from "@/components/ProductHeader";
 import ProductFeatures from "@/components/ProductFeatures";
 import ProductSpecs from "@/components/ProductSpecs";
+import ProductImageSection from "@/components/ProductImageSection";
 import { products } from "../data/products";
 
 const ProductView = () => {
@@ -60,10 +60,7 @@ const ProductView = () => {
         <div className="h-full grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] bg-white">
           <div className="relative h-full bg-gray-50 p-8 overflow-hidden">
             <div className="h-full max-w-2xl mx-auto">
-              <ProductImageGallery
-                images={product.images || [product.image]}
-                title={product.title}
-              />
+              <ProductImageSection product={product} />
             </div>
           </div>
 
@@ -117,21 +114,16 @@ const ProductView = () => {
       {/* Mobile Layout */}
       <ScrollArea className="lg:hidden h-full">
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white pb-20">
-          {/* Product Images */}
           <div className="pt-12 px-2 sm:px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <ProductImageGallery
-                images={product.images || [product.image]}
-                title={product.title}
-              />
+              <ProductImageSection product={product} />
             </motion.div>
           </div>
 
-          {/* Product Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
