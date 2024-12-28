@@ -14,6 +14,11 @@ const ProductHeader = ({ product, discountedPrice }: ProductHeaderProps) => {
         <span className="inline-block px-3 py-1 bg-amazon-orange/10 text-amazon-orange rounded-full text-sm font-medium">
           {product.category}
         </span>
+        {product.discount && (
+          <Badge className="ml-2 bg-amazon-orange text-black font-bold">
+            {product.discount}% OFF
+          </Badge>
+        )}
         <h1 className="text-3xl font-bold text-amazon-dark mt-2">
           {product.title}
         </h1>
@@ -42,9 +47,14 @@ const ProductHeader = ({ product, discountedPrice }: ProductHeaderProps) => {
           ${discountedPrice.toFixed(2)}
         </span>
         {product.discount && (
-          <span className="text-xl text-gray-500 line-through">
-            ${product.price.toFixed(2)}
-          </span>
+          <>
+            <span className="text-xl text-gray-500 line-through">
+              ${product.price.toFixed(2)}
+            </span>
+            <span className="text-amazon-orange font-bold">
+              Save {product.discount}% OFF
+            </span>
+          </>
         )}
       </div>
     </>
