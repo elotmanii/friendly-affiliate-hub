@@ -148,7 +148,7 @@ const Index = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section ref={productsRef} className="py-16">
+      <section ref={productsRef}>
         <FeaturedProducts products={filteredProducts} />
       </section>
 
