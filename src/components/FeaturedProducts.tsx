@@ -22,7 +22,7 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
     : products.filter((product) => product.category === selectedCategory);
 
   return (
-    <section ref={null} className="py-16 bg-white">
+    <section className="py-16 bg-white">
       <div className="container-padding">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

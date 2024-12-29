@@ -44,7 +44,7 @@ const ScrollHint = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 text-gray-500 sm:hidden"
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/80 text-white px-4 py-2 rounded-l-lg flex items-center gap-2 shadow-lg sm:hidden"
         >
           <span className="text-sm font-medium">Swipe</span>
           <ChevronRight className="w-4 h-4 animate-bounce" />
