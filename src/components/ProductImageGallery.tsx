@@ -58,7 +58,7 @@ const ProductImageGallery = ({ images, title }: ProductImageGalleryProps) => {
       </div>
 
       {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-5 gap-2 bg-white p-4 rounded-lg">
           {images.map((image, index) => (
             <button
               key={index}
