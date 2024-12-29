@@ -9,6 +9,7 @@ import AffiliateButtons from "@/components/AffiliateButtons";
 import ProductHeader from "@/components/ProductHeader";
 import ProductFeatures from "@/components/ProductFeatures";
 import ProductSpecs from "@/components/ProductSpecs";
+import ScrollAwareHomeButton from "@/components/ScrollAwareHomeButton";
 import { products } from "../data/products";
 
 const ProductView = () => {
@@ -46,14 +47,7 @@ const ProductView = () => {
       exit={{ opacity: 0 }}
       className="fixed inset-0 bg-background z-50 overflow-hidden"
     >
-      <Button
-        variant="ghost"
-        size="icon"
-        className="fixed right-2 top-2 z-50 bg-white/80 hover:bg-white shadow-md rounded-full lg:right-6 lg:top-6"
-        onClick={() => navigate("/")}
-      >
-        <Home className="h-5 w-5" />
-      </Button>
+      <ScrollAwareHomeButton />
 
       {/* Desktop Layout */}
       <div className="hidden lg:block h-screen max-h-screen overflow-hidden">
