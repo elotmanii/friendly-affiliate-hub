@@ -12,19 +12,31 @@ const ScrollAwareHomeButton = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
       
-      // Show button if scrolling up or at the top
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        setIsVisible(true);
-      } else {
+      if (scrollingDown && currentScrollY > 100) {
         setIsVisible(false);
+      } else if (!scrollingDown || currentScrollY < 100) {
+        setIsVisible(true);
       }
       
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Add throttling to prevent too many updates
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, [lastScrollY]);
 
   return (
