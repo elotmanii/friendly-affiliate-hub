@@ -12,11 +12,11 @@ const ScrollAwareHomeButton = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const scrollingDown = currentScrollY > lastScrollY;
       
-      if (scrollingDown && currentScrollY > 100) {
+      // Hide button as soon as user starts scrolling down
+      if (currentScrollY > lastScrollY && currentScrollY > 10) {
         setIsVisible(false);
-      } else if (!scrollingDown || currentScrollY < 100) {
+      } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
       
