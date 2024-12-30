@@ -41,13 +41,15 @@ const ScrollHint = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/80 text-white px-4 py-2 rounded-l-lg flex items-center gap-2 shadow-lg sm:hidden"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 20 }}
+          transition={{ duration: 0.3 }}
+          className="fixed bottom-24 left-1/2 -translate-x-1/2 bg-black/90 text-white px-6 py-3 rounded-full flex items-center gap-3 shadow-lg z-50 sm:hidden"
         >
-          <span className="text-sm font-medium">Swipe</span>
-          <ChevronRight className="w-4 h-4 animate-bounce" />
+          <span className="text-sm font-medium whitespace-nowrap">Swipe to see more</span>
+          <ChevronRight className="w-5 h-5 animate-pulse" />
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-amazon-orange to-amazon-yellow rounded-full blur opacity-30 -z-10" />
         </motion.div>
       )}
     </AnimatePresence>
