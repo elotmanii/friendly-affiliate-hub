@@ -13,7 +13,6 @@ const ScrollAwareHomeButton = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Hide button as soon as user starts scrolling down
       if (currentScrollY > lastScrollY && currentScrollY > 10) {
         setIsVisible(false);
       } else if (currentScrollY < lastScrollY) {
